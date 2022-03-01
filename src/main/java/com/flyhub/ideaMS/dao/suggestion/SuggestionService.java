@@ -42,10 +42,11 @@ public class SuggestionService {
 
     }
 
-    public Suggestion updateSuggestion(Long suggestionId, Suggestion suggestion) throws RecordNotFoundException {
+    public Suggestion updateSuggestion(String suggestionId, Suggestion suggestion) throws RecordNotFoundException {
 
         //check that the suggestion id exists
-        Suggestion old_suggestion = suggestionRepository.findById(suggestionId).orElse(null);
+
+        Suggestion old_suggestion = suggestionRepository.findBySuggestionId(suggestionId).orElse(null);
 
         if (old_suggestion == null) {
             throw new RecordNotFoundException(1, String.format("SuggestionID %s does not exist.", suggestionId));
@@ -58,7 +59,7 @@ public class SuggestionService {
 
     }
 
-    public int deleteSuggestion(Long suggestionId) {
+    public int deleteSuggestion(String suggestionId) {
 
         log.info("delete request for suggestionId: " + suggestionId);
 
@@ -66,7 +67,7 @@ public class SuggestionService {
 
     }
 
-    public Suggestion listSuggestionBySuggestionId(Long suggestionId) throws RecordNotFoundException {
+    public Suggestion listSuggestionBySuggestionId(String suggestionId) throws RecordNotFoundException {
 
         log.info("querying for suggestion by suggestion Id...");
 

@@ -35,7 +35,7 @@ public class SuggestionController {
     }
 
     @GetMapping("/{suggestionid}")
-    public ResponseEntity<?> listSuggestionBySuggestionId(@PathVariable("suggestionid") @NotNull(message = "Suggestion Id cannot be null") Long suggestionId) {
+    public ResponseEntity<?> listSuggestionBySuggestionId(@PathVariable("suggestionid") @NotNull(message = "Suggestion Id cannot be null") String suggestionId) {
         try {
             Suggestion suggestion = suggestionService.listSuggestionBySuggestionId(suggestionId);
             return new ResponseEntity<>(new DataObjectResponse(0, "Success", suggestion), HttpStatus.OK);
@@ -45,7 +45,7 @@ public class SuggestionController {
     }
 
     @PatchMapping("/update")
-    public ResponseEntity<?> updateSuggestion(@RequestParam("suggestionid") @NotNull(message = "SuggestionId cannot be null") Long suggestionId, @RequestBody Suggestion suggestion) {
+    public ResponseEntity<?> updateSuggestion(@RequestParam("suggestionid") @NotNull(message = "SuggestionId cannot be null") String suggestionId, @RequestBody Suggestion suggestion) {
         try {
 
             Suggestion suggestion1 = suggestionService.updateSuggestion(suggestionId, suggestion);
@@ -58,7 +58,7 @@ public class SuggestionController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteSuggestion(@RequestParam("suggestionid") Long suggestionId) {
+    public ResponseEntity<?> deleteSuggestion(@RequestParam("suggestionid") String suggestionId) {
 
         int number_of_deleted_rows = suggestionService.deleteSuggestion(suggestionId);
 

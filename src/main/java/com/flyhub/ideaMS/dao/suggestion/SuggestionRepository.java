@@ -1,5 +1,6 @@
 package com.flyhub.ideaMS.dao.suggestion;
 
+import com.flyhub.ideaMS.dao.merchant.Merchant;
 import com.flyhub.ideaMS.dao.suggestion.Suggestion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -19,9 +20,10 @@ public interface SuggestionRepository extends JpaRepository<Suggestion, Long> {
     @Modifying
     @Transactional
     @Query("DELETE from suggestions s where s.suggestionId=:suggestionId")
-    public int deleteUser(@Param("suggestionId") Long suggestionId);
+    public int deleteUser(@Param("suggestionId") String suggestionId);
 
     @Query("SELECT s FROM suggestions s WHERE s.suggestionId=:suggestionId")
-    public Optional<Suggestion> findBySuggestionId(@Param("suggestionId") Long suggestionId);
+    public Optional<Suggestion> findBySuggestionId(@Param("suggestionId") String suggestionId);
+
 
 }

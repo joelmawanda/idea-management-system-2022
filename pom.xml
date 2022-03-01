@@ -139,6 +139,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>idea-management-system-2022-docker</finalName>
 	</build>
 
 </project>
