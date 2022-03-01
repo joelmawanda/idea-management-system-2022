@@ -1,0 +1,1504 @@
+{
+	"info": {
+		"_postman_id": "3dd3e93a-bf99-40eb-a90f-153c79c5c1ed",
+		"name": "idea-management-system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"joel\",\n    \"last_name\": \"mawanda\",\n    \"user_name\": \"MawJo\",\n    \"phone_number\": \"0775443381\",\n    \"email\": \"mj@gmail.com\",\n    \"password\": \"pass\",\n    \"confirm_password\": \"pass\",\n    \"date_of_birth\": \"04-05-1996\",\n    \"gender\": \"MALE\"\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/merchant/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"merchant",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "req-token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"entityId\": \"admin\",\n    \"password\": \"pass\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/requesttoken",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"requesttoken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"entityId\": \"admin\",\n    \"password\": \"pass\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check_authorities",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    \"SYS_01000\"\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/checkauthorities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"checkauthorities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/test",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"test"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "merchants",
+			"item": [
+				{
+					"name": "list-merchants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/merchants/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"merchants",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list-merchants-by-merchant-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/merchants/MERCH_01000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"merchants",
+								"MERCH_01000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modify-api-user",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"account_non_expired\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/merchants/update?merchantid=MERCH_04076",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"merchants",
+								"update"
+							],
+							"query": [
+								{
+									"key": "merchantid",
+									"value": "MERCH_04076"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-api-user-by-id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/merchants/delete?merchantid=MERCH_02181",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"merchants",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "merchantid",
+									"value": "MERCH_02181"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "query-by-example",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"merchant_id\": \"MERCH_03162\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/merchants/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"merchants",
+								"search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sys-users",
+			"item": [
+				{
+					"name": "list-system-users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/sysusers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sysusers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch-system-user-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/sysusers/SYS_0101",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sysusers",
+								"SYS_0101"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"admin33\",\n    \"last_name\": \"Administrator33\",\n    \"user_name\": \"admin33\",\n    \"phone_number\": \"0703775701\",\n    \"email\": \"admin33@flyhub.com\",\n    \"password\": \"pass\",\n    \"confirm_password\": \"pass\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/sysusers/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sysusers",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit-system-user",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_name\": \"admin\",\n    \"first_name\": \"admin3\",\n    \"last_name\": \"Richard\",\n    \"email\": \"admin12343@flyhub.com\",\n    \"phone_number\": \"0703745709\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/sysusers/update?sysid=SYS_01882",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sysusers",
+								"update"
+							],
+							"query": [
+								{
+									"key": "sysid",
+									"value": "SYS_01882"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-system-user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/sysusers/delete?sysid=SYS_01098",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sysusers",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "sysid",
+									"value": "SYS_01098"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "functionalgroups",
+			"item": [
+				{
+					"name": "list-all-functional-groups",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/functionalgroups/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"functionalgroups",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list-functional-group-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/functionalgroups/FUNC_GRP_1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"functionalgroups",
+								"FUNC_GRP_1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-functional-group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"functional_group_name\": \"lazy_people\",\n    \"functional_group_code\": \"lc\",\n    \"description\": \"user group for some people\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/functionalgroups/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"functionalgroups",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit-functional-group",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"functional_group_name\": \"LAZY_PEOPLE\",\n    \"functional_group_code\": \"LC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/functionalgroups/update?groupid=FUNC_GRP_1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"functionalgroups",
+								"update"
+							],
+							"query": [
+								{
+									"key": "groupid",
+									"value": "FUNC_GRP_1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/functionalgroups/delete?groupid=FUNC_GRP_1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"functionalgroups",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "groupid",
+									"value": "FUNC_GRP_1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "access-control",
+			"item": [
+				{
+					"name": "list-modules",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/appsecurity/modules",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"appsecurity",
+								"modules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add-group-to-merchant",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/appsecurity/addgrouptomerchant?merchantid=MERCH_04022&groupname=GUEST_USER_GRP",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"appsecurity",
+								"addgrouptomerchant"
+							],
+							"query": [
+								{
+									"key": "merchantid",
+									"value": "MERCH_04022"
+								},
+								{
+									"key": "groupname",
+									"value": "GUEST_USER_GRP"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove-module-from-merchant",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/appsecurity/removemodulefrommerchant?merchantid=MERCH_01000&modulename=FINANCIAL_MODULE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"appsecurity",
+								"removemodulefrommerchant"
+							],
+							"query": [
+								{
+									"key": "merchantid",
+									"value": "MERCH_01000"
+								},
+								{
+									"key": "modulename",
+									"value": "FINANCIAL_MODULE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add-module-to-merchant",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/appsecurity/addmoduletomerchant?merchantid=MERCH_01000&modulename=FINANCIAL_MODULE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"appsecurity",
+								"addmoduletomerchant"
+							],
+							"query": [
+								{
+									"key": "merchantid",
+									"value": "MERCH_01000"
+								},
+								{
+									"key": "modulename",
+									"value": "FINANCIAL_MODULE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove-module-from-merchant",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/appsecurity/removemodulefrommerchant?merchantid=MERCH_04154&modulename=APP_SECURITY_MODULE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"appsecurity",
+								"removemodulefrommerchant"
+							],
+							"query": [
+								{
+									"key": "merchantid",
+									"value": "MERCH_04154"
+								},
+								{
+									"key": "modulename",
+									"value": "APP_SECURITY_MODULE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add-group-to-sysuser",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/appsecurity/addgrouptosystemuser?systemid=SYS_01155&groupname=EXTRA_SUPER_ADMIN_USER_GRP",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"appsecurity",
+								"addgrouptosystemuser"
+							],
+							"query": [
+								{
+									"key": "systemid",
+									"value": "SYS_01155"
+								},
+								{
+									"key": "groupname",
+									"value": "EXTRA_SUPER_ADMIN_USER_GRP"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove-group-from-sysuser",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/appsecurity/removegroupfromsystemuser?systemid=SYS_01155&groupname=EXTRA_SUPER_ADMIN_USER_GRP",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"appsecurity",
+								"removegroupfromsystemuser"
+							],
+							"query": [
+								{
+									"key": "systemid",
+									"value": "SYS_01155"
+								},
+								{
+									"key": "groupname",
+									"value": "EXTRA_SUPER_ADMIN_USER_GRP"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add-module-to-sysuser",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/appsecurity/addmoduletosystemuser?systemid=SYS_01011&modulename=CALLBACK_MODULE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"appsecurity",
+								"addmoduletosystemuser"
+							],
+							"query": [
+								{
+									"key": "systemid",
+									"value": "SYS_01011"
+								},
+								{
+									"key": "modulename",
+									"value": "CALLBACK_MODULE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove-module-from-sysuser",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/appsecurity/removemodulefromsystemuser?systemid=SYS_01010&modulename=CALLBACK_MODULE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"appsecurity",
+								"removemodulefromsystemuser"
+							],
+							"query": [
+								{
+									"key": "systemid",
+									"value": "SYS_01010"
+								},
+								{
+									"key": "modulename",
+									"value": "CALLBACK_MODULE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add-module-to-group",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/appsecurity/addmoduletogroup?groupname=LAZY_PEOPLE&modulename=FINANCIAL_MODULE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"appsecurity",
+								"addmoduletogroup"
+							],
+							"query": [
+								{
+									"key": "groupname",
+									"value": "LAZY_PEOPLE"
+								},
+								{
+									"key": "modulename",
+									"value": "FINANCIAL_MODULE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove-module-from-group",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/appsecurity/removemodulefromgroup?groupname=LAZY_PEOPLE&modulename=FINANCIAL_MODULE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"appsecurity",
+								"removemodulefromgroup"
+							],
+							"query": [
+								{
+									"key": "groupname",
+									"value": "LAZY_PEOPLE"
+								},
+								{
+									"key": "modulename",
+									"value": "FINANCIAL_MODULE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modify-entity-authorities",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"read_allowed\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/appsecurity/modifyentityauthorities?entityid=MERCH_04154&modulename=APP_SECURITY_MODULE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"appsecurity",
+								"modifyentityauthorities"
+							],
+							"query": [
+								{
+									"key": "entityid",
+									"value": "MERCH_04154"
+								},
+								{
+									"key": "modulename",
+									"value": "APP_SECURITY_MODULE"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "config",
+			"item": [
+				{
+					"name": "list-countries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/config/country",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"config",
+								"country"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list-country-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/config/country/COUNTRY_501",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"config",
+								"country",
+								"COUNTRY_501"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Suggestions",
+			"item": [
+				{
+					"name": "Fetch all suggestions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/suggestions/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"suggestions",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Suggestions information",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"suggestion_title\": \"Hunger\",\r\n    \"suggestion_description\": \"No breakfast\",\r\n    \"suggestion_reason\": \"No breakfast\",\r\n    \"suggestion_type\": \"COMPLAINT\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:808/api/v1/suggestions/update/?suggestionid=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "808",
+							"path": [
+								"api",
+								"v1",
+								"suggestions",
+								"update",
+								""
+							],
+							"query": [
+								{
+									"key": "suggestionid",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Suggestion",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/suggestions/delete/?suggestionid=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"suggestions",
+								"delete",
+								""
+							],
+							"query": [
+								{
+									"key": "suggestionid",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Suggestions Submission",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"suggestion_title\": \"Hunger\",\r\n    \"suggestion_description\": \"No lunch\",\r\n    \"suggestion_reason\": \"No lunch\",\r\n    \"suggestion_type\": \"COMPLAINT\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/suggestions/suggestion-submission",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"suggestions",
+								"suggestion-submission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch a suggestions by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/suggestions/?suggestionid=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"suggestions",
+								""
+							],
+							"query": [
+								{
+									"key": "suggestionid",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Ideas",
+			"item": [
+				{
+					"name": "Fetch all ideas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/ideas/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ideas",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update ideas information",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"first_name\": \"Joel\",\r\n        \"last_name\": \"Dunstan\",\r\n        \"username\": \"JoelM\",\r\n        \"phone_number\": \"\",\r\n        \"created_time\": \"2022-02-25T12:05:30.994+00:00\",\r\n        \"email\": \"mawandajoel20@gamil.com\",\r\n        \"gender\": \"MALE\",\r\n        \"status\": null,\r\n        \"country\": \"Uganda\",\r\n        \"prefix\": \"\",\r\n        \"postfix\": \"\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/ideas/update/?ideaid=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ideas",
+								"update",
+								""
+							],
+							"query": [
+								{
+									"key": "ideaid",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an Idea",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/ideas/delete/?ideaid=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ideas",
+								"delete",
+								""
+							],
+							"query": [
+								{
+									"key": "ideaid",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit an idea",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idea_title\": \"Hunger\",\r\n    \"idea_description\": \"No lunch\",\r\n    \"idea_background\": \"No lunch\",\r\n    \"category\": \"TECHNOLOGY\",\r\n    \"priority\":\"VERY_HIGH\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/ideas/idea-submission",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ideas",
+								"idea-submission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch an Idea by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/ideas/?suggestionid=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ideas",
+								""
+							],
+							"query": [
+								{
+									"key": "suggestionid",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Files",
+			"item": [
+				{
+					"name": "Fetch uploaded files",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/files/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"files",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload a file",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/stanbic/Downloads/real-estate-marketplace-backend-main-code-review-comments.docx"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/files/uploadFiles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"files",
+								"uploadFiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download a file",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/files/downloadFile/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"files",
+								"downloadFile",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJmbHlodWIudWcuY29tIiwic3ViIjoiYWRtaW4iLCJpZCI6IlNZU18wMTAwMCIsImlzc3VwZXJhZG1pbiI6dHJ1ZSwibW9kdWxlcyI6eyJBUFBfQ09ORklHX01PRFVMRS5hY2Nlc3NfbW9kZSI6dHJ1ZSwiQVBQX0NPTkZJR19NT0RVTEUuY3JlYXRlX2FsbG93ZWQiOnRydWUsIkFQUF9DT05GSUdfTU9EVUxFLmRlbGV0ZV9hbGxvd2VkIjp0cnVlLCJBUFBfQ09ORklHX01PRFVMRS5wcmludF9hbGxvd2VkIjp0cnVlLCJBUFBfQ09ORklHX01PRFVMRS5yZWFkX2FsbG93ZWQiOnRydWUsIkFQUF9DT05GSUdfTU9EVUxFLnNlYXJjaF9hbGxvd2VkIjp0cnVlLCJBUFBfQ09ORklHX01PRFVMRS51cGRhdGVfYWxsb3dlZCI6dHJ1ZSwiRklOQU5DSUFMX01PRFVMRS5hY2Nlc3NfbW9kZSI6dHJ1ZSwiRklOQU5DSUFMX01PRFVMRS5jcmVhdGVfYWxsb3dlZCI6dHJ1ZSwiRklOQU5DSUFMX01PRFVMRS5kZWxldGVfYWxsb3dlZCI6dHJ1ZSwiRklOQU5DSUFMX01PRFVMRS5wcmludF9hbGxvd2VkIjp0cnVlLCJGSU5BTkNJQUxfTU9EVUxFLnJlYWRfYWxsb3dlZCI6dHJ1ZSwiRklOQU5DSUFMX01PRFVMRS5zZWFyY2hfYWxsb3dlZCI6dHJ1ZSwiRklOQU5DSUFMX01PRFVMRS51cGRhdGVfYWxsb3dlZCI6dHJ1ZSwiQVBQX1NFQ1VSSVRZX01PRFVMRS5hY2Nlc3NfbW9kZSI6dHJ1ZSwiQVBQX1NFQ1VSSVRZX01PRFVMRS5jcmVhdGVfYWxsb3dlZCI6dHJ1ZSwiQVBQX1NFQ1VSSVRZX01PRFVMRS5kZWxldGVfYWxsb3dlZCI6dHJ1ZSwiQVBQX1NFQ1VSSVRZX01PRFVMRS5wcmludF9hbGxvd2VkIjp0cnVlLCJBUFBfU0VDVVJJVFlfTU9EVUxFLnJlYWRfYWxsb3dlZCI6dHJ1ZSwiQVBQX1NFQ1VSSVRZX01PRFVMRS5zZWFyY2hfYWxsb3dlZCI6dHJ1ZSwiQVBQX1NFQ1VSSVRZX01PRFVMRS51cGRhdGVfYWxsb3dlZCI6dHJ1ZSwiTUVSQ0hBTlRfTU9EVUxFLmFjY2Vzc19tb2RlIjp0cnVlLCJNRVJDSEFOVF9NT0RVTEUuY3JlYXRlX2FsbG93ZWQiOnRydWUsIk1FUkNIQU5UX01PRFVMRS5kZWxldGVfYWxsb3dlZCI6dHJ1ZSwiTUVSQ0hBTlRfTU9EVUxFLnByaW50X2FsbG93ZWQiOnRydWUsIk1FUkNIQU5UX01PRFVMRS5yZWFkX2FsbG93ZWQiOnRydWUsIk1FUkNIQU5UX01PRFVMRS5zZWFyY2hfYWxsb3dlZCI6dHJ1ZSwiTUVSQ0hBTlRfTU9EVUxFLnVwZGF0ZV9hbGxvd2VkIjp0cnVlLCJUUkFOU0NBVElPTlNfTU9EVUxFLmFjY2Vzc19tb2RlIjp0cnVlLCJUUkFOU0NBVElPTlNfTU9EVUxFLmNyZWF0ZV9hbGxvd2VkIjp0cnVlLCJUUkFOU0NBVElPTlNfTU9EVUxFLmRlbGV0ZV9hbGxvd2VkIjp0cnVlLCJUUkFOU0NBVElPTlNfTU9EVUxFLnByaW50X2FsbG93ZWQiOnRydWUsIlRSQU5TQ0FUSU9OU19NT0RVTEUucmVhZF9hbGxvd2VkIjp0cnVlLCJUUkFOU0NBVElPTlNfTU9EVUxFLnNlYXJjaF9hbGxvd2VkIjp0cnVlLCJUUkFOU0NBVElPTlNfTU9EVUxFLnVwZGF0ZV9hbGxvd2VkIjp0cnVlLCJDQUxMQkFDS19NT0RVTEUuYWNjZXNzX21vZGUiOnRydWUsIkNBTExCQUNLX01PRFVMRS5jcmVhdGVfYWxsb3dlZCI6dHJ1ZSwiQ0FMTEJBQ0tfTU9EVUxFLmRlbGV0ZV9hbGxvd2VkIjp0cnVlLCJDQUxMQkFDS19NT0RVTEUucHJpbnRfYWxsb3dlZCI6dHJ1ZSwiQ0FMTEJBQ0tfTU9EVUxFLnJlYWRfYWxsb3dlZCI6dHJ1ZSwiQ0FMTEJBQ0tfTU9EVUxFLnNlYXJjaF9hbGxvd2VkIjp0cnVlLCJDQUxMQkFDS19NT0RVTEUudXBkYXRlX2FsbG93ZWQiOnRydWV9LCJpYXQiOjE2NDYwNTA2MjcsImV4cCI6MTY0NjY1NTQyN30.2T_tdFD8HpDiR9K_NE_nTv3bYC_Rqlz1ML7SS2JCybZW0NkRJFnYt0xTtBTEI0vvYog1sRaUQuoa16HCUU121g",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
