@@ -1,5 +1,6 @@
 package com.flyhub.ideaMS.dao.suggestion;
 
+import com.flyhub.ideaMS.dao.merchant.Merchant;
 import com.flyhub.ideaMS.exception.RecordNotFoundException;
 import com.flyhub.ideaMS.utils.ServicesUtils;
 
@@ -69,7 +70,7 @@ public class SuggestionService {
 
     public Suggestion listSuggestionBySuggestionId(String suggestionId) throws RecordNotFoundException {
 
-        log.info("querying for suggestion by suggestion Id...");
+        log.info("querying for suggestion user by suggestion Id...");
 
         Suggestion suggestion = suggestionRepository.findBySuggestionId(suggestionId).orElse(null);
 
@@ -81,4 +82,5 @@ public class SuggestionService {
 
         return suggestion;
     }
+
 }

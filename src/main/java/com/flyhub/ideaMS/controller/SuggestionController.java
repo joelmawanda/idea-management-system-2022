@@ -1,5 +1,6 @@
 package com.flyhub.ideaMS.controller;
 
+import com.flyhub.ideaMS.dao.merchant.Merchant;
 import com.flyhub.ideaMS.dao.suggestion.Suggestion;
 import com.flyhub.ideaMS.exception.RecordNotFoundException;
 import com.flyhub.ideaMS.models.DataObjectResponse;
