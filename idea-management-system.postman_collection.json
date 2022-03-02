@@ -53,7 +53,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"entityId\": \"admin\",\n    \"password\": \"pass\"\n}",
+							"raw": "{\n    \"entityId\": \"MawJo\",\n    \"password\": \"pass\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1074,7 +1074,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"suggestion_title\": \"Hunger\",\r\n    \"suggestion_description\": \"No breakfast\",\r\n    \"suggestion_reason\": \"No breakfast\",\r\n    \"suggestion_type\": \"COMPLAINT\"\r\n    \r\n}",
+							"raw": "{\r\n    \"suggestion_title\": \"Hungeryyyyyyyyyyy\",\r\n    \"suggestion_description\": \"No breakfast\",\r\n    \"suggestion_reason\": \"No breakfast\",\r\n    \"suggestion_type\": \"COMPLAINT\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1082,12 +1082,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:808/api/v1/suggestions/update/?suggestionid=1",
+							"raw": "http://localhost:8080/api/v1/suggestions/update/?suggestionid=SUGG_01004",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "808",
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
@@ -1098,7 +1098,7 @@
 							"query": [
 								{
 									"key": "suggestionid",
-									"value": "1"
+									"value": "SUGG_01004"
 								}
 							]
 						}
@@ -1111,7 +1111,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/suggestions/delete/?suggestionid=1",
+							"raw": "http://localhost:8080/api/v1/suggestions/delete/?suggestionid=SUGG_01004",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1127,7 +1127,7 @@
 							"query": [
 								{
 									"key": "suggestionid",
-									"value": "1"
+									"value": "SUGG_01004"
 								}
 							]
 						}
@@ -1171,7 +1171,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/suggestions/?suggestionid=3",
+							"raw": "http://localhost:8080/api/v1/suggestions/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1181,13 +1181,7 @@
 								"api",
 								"v1",
 								"suggestions",
-								""
-							],
-							"query": [
-								{
-									"key": "suggestionid",
-									"value": "3"
-								}
+								"1"
 							]
 						}
 					},
@@ -1405,6 +1399,11 @@
 									"key": "file",
 									"type": "file",
 									"src": "/C:/Users/stanbic/Downloads/real-estate-marketplace-backend-main-code-review-comments.docx"
+								},
+								{
+									"key": "title",
+									"value": "ggfgfgfdfddfdfdfs",
+									"type": "text"
 								}
 							]
 						},
@@ -1476,7 +1475,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJmbHlodWIudWcuY29tIiwic3ViIjoiYWRtaW4iLCJpZCI6IlNZU18wMTAwMCIsImlzc3VwZXJhZG1pbiI6dHJ1ZSwibW9kdWxlcyI6eyJBUFBfQ09ORklHX01PRFVMRS5hY2Nlc3NfbW9kZSI6dHJ1ZSwiQVBQX0NPTkZJR19NT0RVTEUuY3JlYXRlX2FsbG93ZWQiOnRydWUsIkFQUF9DT05GSUdfTU9EVUxFLmRlbGV0ZV9hbGxvd2VkIjp0cnVlLCJBUFBfQ09ORklHX01PRFVMRS5wcmludF9hbGxvd2VkIjp0cnVlLCJBUFBfQ09ORklHX01PRFVMRS5yZWFkX2FsbG93ZWQiOnRydWUsIkFQUF9DT05GSUdfTU9EVUxFLnNlYXJjaF9hbGxvd2VkIjp0cnVlLCJBUFBfQ09ORklHX01PRFVMRS51cGRhdGVfYWxsb3dlZCI6dHJ1ZSwiRklOQU5DSUFMX01PRFVMRS5hY2Nlc3NfbW9kZSI6dHJ1ZSwiRklOQU5DSUFMX01PRFVMRS5jcmVhdGVfYWxsb3dlZCI6dHJ1ZSwiRklOQU5DSUFMX01PRFVMRS5kZWxldGVfYWxsb3dlZCI6dHJ1ZSwiRklOQU5DSUFMX01PRFVMRS5wcmludF9hbGxvd2VkIjp0cnVlLCJGSU5BTkNJQUxfTU9EVUxFLnJlYWRfYWxsb3dlZCI6dHJ1ZSwiRklOQU5DSUFMX01PRFVMRS5zZWFyY2hfYWxsb3dlZCI6dHJ1ZSwiRklOQU5DSUFMX01PRFVMRS51cGRhdGVfYWxsb3dlZCI6dHJ1ZSwiQVBQX1NFQ1VSSVRZX01PRFVMRS5hY2Nlc3NfbW9kZSI6dHJ1ZSwiQVBQX1NFQ1VSSVRZX01PRFVMRS5jcmVhdGVfYWxsb3dlZCI6dHJ1ZSwiQVBQX1NFQ1VSSVRZX01PRFVMRS5kZWxldGVfYWxsb3dlZCI6dHJ1ZSwiQVBQX1NFQ1VSSVRZX01PRFVMRS5wcmludF9hbGxvd2VkIjp0cnVlLCJBUFBfU0VDVVJJVFlfTU9EVUxFLnJlYWRfYWxsb3dlZCI6dHJ1ZSwiQVBQX1NFQ1VSSVRZX01PRFVMRS5zZWFyY2hfYWxsb3dlZCI6dHJ1ZSwiQVBQX1NFQ1VSSVRZX01PRFVMRS51cGRhdGVfYWxsb3dlZCI6dHJ1ZSwiTUVSQ0hBTlRfTU9EVUxFLmFjY2Vzc19tb2RlIjp0cnVlLCJNRVJDSEFOVF9NT0RVTEUuY3JlYXRlX2FsbG93ZWQiOnRydWUsIk1FUkNIQU5UX01PRFVMRS5kZWxldGVfYWxsb3dlZCI6dHJ1ZSwiTUVSQ0hBTlRfTU9EVUxFLnByaW50X2FsbG93ZWQiOnRydWUsIk1FUkNIQU5UX01PRFVMRS5yZWFkX2FsbG93ZWQiOnRydWUsIk1FUkNIQU5UX01PRFVMRS5zZWFyY2hfYWxsb3dlZCI6dHJ1ZSwiTUVSQ0hBTlRfTU9EVUxFLnVwZGF0ZV9hbGxvd2VkIjp0cnVlLCJUUkFOU0NBVElPTlNfTU9EVUxFLmFjY2Vzc19tb2RlIjp0cnVlLCJUUkFOU0NBVElPTlNfTU9EVUxFLmNyZWF0ZV9hbGxvd2VkIjp0cnVlLCJUUkFOU0NBVElPTlNfTU9EVUxFLmRlbGV0ZV9hbGxvd2VkIjp0cnVlLCJUUkFOU0NBVElPTlNfTU9EVUxFLnByaW50X2FsbG93ZWQiOnRydWUsIlRSQU5TQ0FUSU9OU19NT0RVTEUucmVhZF9hbGxvd2VkIjp0cnVlLCJUUkFOU0NBVElPTlNfTU9EVUxFLnNlYXJjaF9hbGxvd2VkIjp0cnVlLCJUUkFOU0NBVElPTlNfTU9EVUxFLnVwZGF0ZV9hbGxvd2VkIjp0cnVlLCJDQUxMQkFDS19NT0RVTEUuYWNjZXNzX21vZGUiOnRydWUsIkNBTExCQUNLX01PRFVMRS5jcmVhdGVfYWxsb3dlZCI6dHJ1ZSwiQ0FMTEJBQ0tfTU9EVUxFLmRlbGV0ZV9hbGxvd2VkIjp0cnVlLCJDQUxMQkFDS19NT0RVTEUucHJpbnRfYWxsb3dlZCI6dHJ1ZSwiQ0FMTEJBQ0tfTU9EVUxFLnJlYWRfYWxsb3dlZCI6dHJ1ZSwiQ0FMTEJBQ0tfTU9EVUxFLnNlYXJjaF9hbGxvd2VkIjp0cnVlLCJDQUxMQkFDS19NT0RVTEUudXBkYXRlX2FsbG93ZWQiOnRydWV9LCJpYXQiOjE2NDYwNTA2MjcsImV4cCI6MTY0NjY1NTQyN30.2T_tdFD8HpDiR9K_NE_nTv3bYC_Rqlz1ML7SS2JCybZW0NkRJFnYt0xTtBTEI0vvYog1sRaUQuoa16HCUU121g",
+				"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJmbHlodWIudWcuY29tIiwic3ViIjoiTWF3Sm8iLCJpZCI6Ik1FUkNIXzAxMDAxIiwibW9kdWxlcyI6e30sImlhdCI6MTY0NjE0MzUxNCwiZXhwIjoxNjQ2NzQ4MzE0fQ.FXII0dGAsZeozpUV3JO0AQW3AytEiQUFlVwl5T_8vrz9a8pje1s7xY0wwWyMDLhqZT9ogBGXeXuAGHCWqxrZ7w",
 				"type": "string"
 			}
 		]

@@ -2,7 +2,6 @@ package com.flyhub.ideaMS.controller;
 
 import java.util.List;
 
-import com.flyhub.ideaMS.dao.Ideas;
 import com.flyhub.ideaMS.exception.RecordNotFoundException;
 import com.flyhub.ideaMS.models.DataObjectResponse;
 import com.flyhub.ideaMS.models.OperationResponse;
@@ -12,7 +11,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.flyhub.ideaMS.service.IdeaService;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
