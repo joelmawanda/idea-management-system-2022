@@ -32,6 +32,11 @@ public abstract class DaoConstants {
     public static final String SUGG_ID_SEQUENCE_NAME = "sugg_id_seq";
 
     /**
+     * the name of the sequence to be created in the database for the suggestions
+     */
+    public static final String IDEAS_ID_SEQUENCE_NAME = "ideas_id_seq";
+
+    /**
      * this is the prefix of the merchant Id
      */
     public static final String MERCHANT_ID_SEQUENCE_PREFIX = "MERCH_";
@@ -46,6 +51,11 @@ public abstract class DaoConstants {
      * this is the prefix of the suggestion Id
      */
     public static final String SUGG_ID_SEQUENCE_PREFIX = "SUGG_";
+
+    /**
+     * this is the prefix of the ideas Id
+     */
+    public static final String IDEAS_ID_SEQUENCE_PREFIX = "IDEA_";
 
     /**
      * this is the initial value for the sequence

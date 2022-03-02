@@ -1,10 +1,12 @@
 package com.flyhub.ideaMS.dao.ideas;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.flyhub.ideaMS.dao.Category;
 import com.flyhub.ideaMS.dao.Priority;
+import com.flyhub.ideaMS.dao.suggestion.SuggestionEntityListener;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,12 +22,18 @@ import java.sql.Date;
 @ToString
 @Entity(name = "ideas")
 @Table(name = "ideas")
+@EntityListeners(IdeasEntityListener.class)
+@JsonIgnoreProperties(value = {"id"}, allowSetters = true)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="ideaId")
 public class Ideas {
+
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name = "idea_id")
-   private Long ideaId;
+   @Column(name = "id")
+   private Long id;
+
+   @Column(name = "idea_id", unique = true, updatable = false)
+   private String ideaId;
 
    @JsonProperty("idea_title")
    @Column(name = "idea_title")

@@ -2,6 +2,8 @@ package com.flyhub.ideaMS.controller;
 
 import java.util.List;
 
+import com.flyhub.ideaMS.dao.ideas.IdeaService;
+import com.flyhub.ideaMS.dao.ideas.Ideas;
 import com.flyhub.ideaMS.exception.RecordNotFoundException;
 import com.flyhub.ideaMS.models.DataObjectResponse;
 import com.flyhub.ideaMS.models.OperationResponse;
@@ -37,7 +39,7 @@ public class IdeaController {
     }
 
     @GetMapping("/{ideaid}")
-    public ResponseEntity<?> listIdeaByIdeaId(@PathVariable("ideaid") @NotNull(message = "Idea Id cannot be null") Long ideaId) {
+    public ResponseEntity<?> listIdeaByIdeaId(@PathVariable("ideaid") @NotNull(message = "Idea Id cannot be null") String ideaId) {
             try {
                 Ideas ideas = ideaService.listIdeaByIdeaId(ideaId);
                 return new ResponseEntity<>(new DataObjectResponse(0, "Success", ideas), HttpStatus.OK);
@@ -47,10 +49,10 @@ public class IdeaController {
     }
 
     @PatchMapping("/update")
-    public ResponseEntity<?> updateIdea(@RequestParam("ideaid") @NotNull(message = "ideaId cannot be null") Long ideaId, @RequestBody Ideas ideas) {
+    public ResponseEntity<?> updateIdea(@RequestParam("ideaid") @NotNull(message = "ideaId cannot be null") String ideaId, @RequestBody Ideas ideas) {
         try {
 
-            Ideas ideas1 = ideaService.updateAnIdea(ideaId, ideas);
+            Ideas ideas1 = ideaService.updateIdea(ideaId, ideas);
 
             return new ResponseEntity<>(new DataObjectResponse(0, "Updated Successfully", ideas1), HttpStatus.OK);
 
@@ -60,7 +62,7 @@ public class IdeaController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteIdea(@RequestParam("ideaid") Long ideaId) {
+    public ResponseEntity<?> deleteIdea(@RequestParam("ideaid") String ideaId) {
 
         int number_of_deleted_rows = ideaService.deleteIdea(ideaId);
 

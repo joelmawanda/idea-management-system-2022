@@ -18,9 +18,9 @@ public interface IdeaRepository extends JpaRepository<Ideas, Long> {
     @Modifying
     @Transactional
     @Query("DELETE from ideas i where i.ideaId=:ideaId")
-    public int deleteUser(@Param("ideaId") Long ideaId);
+    public int deleteUser(@Param("ideaId") String ideaId);
 
     @Query("SELECT i FROM ideas i WHERE i.ideaId=:ideaId")
-    public Optional<Ideas> findByIdeaId(@Param("ideaId") Long ideaId);
+    public Optional<Ideas> findByIdeaId(@Param("ideaId") String ideaId);
 
 }

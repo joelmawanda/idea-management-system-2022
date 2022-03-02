@@ -59,6 +59,8 @@ public class DaoAccessUtils {
 
     private static String SUGG_ID_QUERY = "";
 
+    private static String IDEAS_ID_QUERY = "";
+
     @PostConstruct
     @SuppressWarnings("null")
     private void init() {
@@ -77,6 +79,9 @@ public class DaoAccessUtils {
 
                 jdbcTemplate.execute(String.format("CREATE SEQUENCE IF NOT EXISTS %s  INCREMENT %d START %d", DaoConstants.SUGG_ID_SEQUENCE_NAME, DaoConstants.INIT_SEQUENCE_INC_VAL, DaoConstants.INIT_SEQUENCE_VAL));
                 SUGG_ID_QUERY = String.format("select nextval('%s')", DaoConstants.SUGG_ID_SEQUENCE_NAME);
+
+                jdbcTemplate.execute(String.format("CREATE SEQUENCE IF NOT EXISTS %s  INCREMENT %d START %d", DaoConstants.IDEAS_ID_SEQUENCE_NAME, DaoConstants.INIT_SEQUENCE_INC_VAL, DaoConstants.INIT_SEQUENCE_VAL));
+                IDEAS_ID_QUERY = String.format("select nextval('%s')", DaoConstants.IDEAS_ID_SEQUENCE_NAME);
 
                 break;
             }
@@ -241,6 +246,46 @@ public class DaoAccessUtils {
 
         return String.format(DaoConstants.SUGG_ID_SEQUENCE_PREFIX + "%05d", id);
     }
+
+
+    @SuppressWarnings("null")
+    public String generateIdeasId() {
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        long id = 0;
+
+        switch (env.getProperty("spring.jpa.properties.hibernate.dialect")) {
+            case POSTGRES_DIALECT_CLASS_NAME: {
+                id = jdbcTemplate.queryForObject(IDEAS_ID_QUERY, Long.class);
+                break;
+            }
+
+            case MYSQL_DIALECT_CLASS_NAME:
+            case MARIADB_DIALECT_CLASS_NAME: {
+                jdbcTemplate.execute(String.format("update %s set next_val=next_val+%d", DaoConstants.IDEAS_ID_SEQUENCE_NAME, DaoConstants.INIT_SEQUENCE_INC_VAL));
+
+                id = jdbcTemplate.queryForObject(String.format("select next_val from %s", DaoConstants.IDEAS_ID_SEQUENCE_NAME), Long.class);
+
+                break;
+            }
+
+            case H2_DIALECT_CLASS_NAME: {
+                id = jdbcTemplate.queryForObject(String.format("VALUES NEXT VALUE FOR %s", DaoConstants.MERCHANT_ID_SEQUENCE_NAME), Long.class);
+
+                break;
+            }
+
+            default: {
+                throw new RuntimeException("Unknown hibernate dialect");
+            }
+        }
+
+        log.info("GENERATED-IDEAS-ID: " + id);
+
+        return String.format(DaoConstants.IDEAS_ID_SEQUENCE_PREFIX + "%05d", id);
+    }
+
 
     /**
      * @deprecated this is not in use
