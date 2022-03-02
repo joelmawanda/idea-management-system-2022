@@ -27,7 +27,6 @@ public class MerchantDetails implements UserDetails, Serializable {
     private final boolean isCredentialsNonExpired;
     private final boolean enabled;
 
-    //private final Set<FunctionalGroup> functionalGroups;
     private HashMap<String, EntityAuthorisationMappingDto> moduleAuthorities;
 
     public MerchantDetails(Merchant merchant) {
