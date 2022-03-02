@@ -1,15 +1,13 @@
-package com.flyhub.ideaMS.repository;
+package com.flyhub.ideaMS.dao.ideas;
 
-import java.util.Optional;
-
-
-import com.flyhub.ideaMS.dao.Ideas;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Repository
 public interface IdeaRepository extends JpaRepository<Ideas, Long> {

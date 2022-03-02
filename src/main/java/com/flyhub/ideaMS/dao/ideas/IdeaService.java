@@ -1,14 +1,12 @@
-package com.flyhub.ideaMS.service;
+package com.flyhub.ideaMS.dao.ideas;
 
-import java.util.List;
-
-import com.flyhub.ideaMS.dao.Ideas;
 import com.flyhub.ideaMS.exception.RecordNotFoundException;
 import com.flyhub.ideaMS.utils.ServicesUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.flyhub.ideaMS.repository.IdeaRepository;
+
+import java.util.List;
 
 @Service
 public class IdeaService {
