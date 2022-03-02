@@ -20,7 +20,7 @@ public interface SuggestionRepository extends JpaRepository<Suggestion, Long> {
     @Modifying
     @Transactional
     @Query("DELETE from suggestions s where s.suggestionId=:suggestionId")
-    public int deleteUser(@Param("suggestionId") String suggestionId);
+    public int deleteSuggestion(@Param("suggestionId") String suggestionId);
 
     @Query("SELECT s FROM suggestions s WHERE s.suggestionId=:suggestionId")
     public Optional<Suggestion> findBySuggestionId(@Param("suggestionId") String suggestionId);

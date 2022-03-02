@@ -1,5 +1,6 @@
 package com.flyhub.ideaMS.dao.ideas;
 
+import com.flyhub.ideaMS.dao.suggestion.Suggestion;
 import com.flyhub.ideaMS.exception.RecordNotFoundException;
 import com.flyhub.ideaMS.utils.ServicesUtils;
 import org.apache.log4j.Logger;
@@ -32,7 +33,7 @@ public class IdeaService {
 
         List<Ideas> all_ideas = ideaRepository.findAll();
 
-        log.info("system found " + all_ideas.size() + " idea(s)");
+        log.info("system found " + all_ideas.size() + " ideas(s)");
 
         if (all_ideas == null) {
             throw new RecordNotFoundException(1, String.format("No ideas present"));
@@ -41,10 +42,11 @@ public class IdeaService {
         return all_ideas;
     }
 
-    public Ideas updateAnIdea(Long ideaId, Ideas ideas) throws RecordNotFoundException {
+    public Ideas updateIdea(String ideaId, Ideas ideas) throws RecordNotFoundException {
 
         //check that the idea id exists
-        Ideas old_idea = ideaRepository.findById(ideaId).orElse(null);
+
+        Ideas old_idea = ideaRepository.findByIdeaId(ideaId).orElse(null);
 
         if (old_idea == null) {
             throw new RecordNotFoundException(1, String.format("IdeaID %s does not exist.", ideaId));
@@ -57,7 +59,7 @@ public class IdeaService {
 
     }
 
-    public int deleteIdea(Long ideaId) {
+    public int deleteIdea(String ideaId) {
 
         log.info("delete request for ideaId: " + ideaId);
 
@@ -65,7 +67,7 @@ public class IdeaService {
 
     }
 
-    public Ideas listIdeaByIdeaId(Long ideaId) throws RecordNotFoundException {
+    public Ideas listIdeaByIdeaId(String ideaId) throws RecordNotFoundException {
 
         log.info("querying for idea by idea Id...");
 

@@ -64,7 +64,7 @@ public class SuggestionService {
 
         log.info("delete request for suggestionId: " + suggestionId);
 
-        return suggestionRepository.deleteUser(suggestionId);
+        return suggestionRepository.deleteSuggestion(suggestionId);
 
     }
 
