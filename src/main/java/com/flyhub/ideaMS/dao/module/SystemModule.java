@@ -3,21 +3,10 @@ package com.flyhub.ideaMS.dao.module;
 public enum SystemModule {
 
     /**
-     * This is the enum name for the financial controller class
-     */
-    FINANCIAL_MODULE(SystemModuleNames.FINANCIAL_CONTROLLER),
-    /**
-     * This is the enum name for the call back controller class
-     */
-    CALLBACK_MODULE(SystemModuleNames.CALLBACK_CONTROLLER),
-    /**
      * This is the enum name for the api user controller class
      */
     MERCHANT_MODULE(SystemModuleNames.MERCHANT_CONTROLLER),
-    /**
-     * This is the enum name for the transactions controller class
-     */
-    TRANSCATIONS_MODULE(SystemModuleNames.TRANSCATIONS_CONTROLLER),
+
     /**
      * This is the enum name for the access control controller class
      */
