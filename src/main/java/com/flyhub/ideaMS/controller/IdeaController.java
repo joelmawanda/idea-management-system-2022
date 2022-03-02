@@ -1,5 +1,6 @@
 package com.flyhub.ideaMS.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.flyhub.ideaMS.dao.ideas.IdeaService;
@@ -13,8 +14,10 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @RestController
@@ -76,9 +79,21 @@ public class IdeaController {
         }
     }
 
+//    @PostMapping("idea-submission")
+//    public ResponseEntity<?> registerIdea(@Valid @RequestBody Ideas ideas) {
+//        Ideas submitted_idea = ideaService.uploadIdea(ideas);
+//
+//        if (submitted_idea != null) {
+//            return new ResponseEntity<>(submitted_idea, HttpStatus.CREATED);
+//        } else {
+//            return new ResponseEntity<>(submitted_idea, HttpStatus.EXPECTATION_FAILED);
+//        }
+//    }
+
+
     @PostMapping("idea-submission")
-    public ResponseEntity<?> registerIdea(@Valid @RequestBody Ideas ideas) {
-        Ideas submitted_idea = ideaService.uploadIdea(ideas);
+    public ResponseEntity<?> registerIdea(@RequestParam("file") MultipartFile[] files, @RequestParam("idea_description") @NotBlank String ideaDescription, @RequestParam("idea_background") @NotBlank String ideaBackground, @RequestParam("idea_title") @NotBlank String ideaTitle) throws IOException {
+        Ideas submitted_idea = ideaService.attachFile(files, ideaDescription,ideaBackground,ideaTitle);
 
         if (submitted_idea != null) {
             return new ResponseEntity<>(submitted_idea, HttpStatus.CREATED);
@@ -86,5 +101,16 @@ public class IdeaController {
             return new ResponseEntity<>(submitted_idea, HttpStatus.EXPECTATION_FAILED);
         }
     }
+
+//    public ResponseEntity<OperationResult> createNeighborhoodVisual(@RequestParam("file") MultipartFile[] files, @RequestParam("description") @NotBlank String description,
+//                                                                    @RequestParam("created_by") @NotBlank String created_by, @RequestParam("property_id") @NotNull Long property_id, @RequestHeader("authorization") String authorization,
+//                                                                    @RequestHeader("username") String username
+//    ) throws IOException {
+//        log.info("Inside createNeighborhoodVisual method of NeighborhoodVisualsController");
+//        if (authService.authorizeUser(authorization, username) == 1 && authService.validateSeller(username)) {
+//            return ResponseEntity.status(HttpStatus.CREATED).body(neighborhoodVisualsService.createNeighborhoodVisual(files, description, created_by, property_id));
+//        }
+//        return null;
+//    }
 
 }
