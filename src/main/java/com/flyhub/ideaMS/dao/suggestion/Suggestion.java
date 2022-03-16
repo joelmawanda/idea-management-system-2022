@@ -38,7 +38,7 @@ public class Suggestion {
 
     @JsonProperty("suggestion_title")
     @NotBlank(message = "Suggestion title cannot be null")
-    @Column(name = "suggestion_title", length = 64)
+    @Column(name = "suggestion_title", length = 2000)
     private String suggestionTitle;
 
     @JsonProperty("suggestion_description")
