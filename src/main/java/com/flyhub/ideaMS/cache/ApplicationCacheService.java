@@ -13,18 +13,18 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author Benjamin E Ndugga
+ * @author Joel Mawanda
  */
 @Component
 public class ApplicationCacheService {
-    
+
     private static final Logger log = LogManager.getLogger(ApplicationCacheService.class);
 
     @Autowired
     private HazelcastInstance hazelcastInstance;
 
     public void cacheAuthenticationObject(Authentication authenticate) {
-        log.info("caching the authication object...");
+        log.info("caching the authentication object...");
 
         IMap<String, Authentication> map = hazelcastInstance.getMap(GlobalConfig.PRINICIPLE_OBJECT_CACHE_MAP_NAME);
 

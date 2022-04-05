@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.flyhub.ideaMS.dao.Gender;
+import com.flyhub.ideaMS.dao.country.Country;
 import com.flyhub.ideaMS.dao.entityauthority.EntityAuthorisationMappingDto;
 import com.flyhub.ideaMS.models.views.View;
 import lombok.Getter;
@@ -55,9 +56,9 @@ public class User implements Serializable {
     
     private String postfix;
 
+    @NotNull(message = "Please input your country")
     @Column(name = "country")
-    @JsonProperty("country_name")
-    
+    @JsonProperty("country")
     private String country;
 
     @JsonProperty("gender")

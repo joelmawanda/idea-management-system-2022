@@ -37,9 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String[] AUTH_WHITELIST = {
         //-- public endpoints --
         "/api/v1/auth/**",
-        "/api/v1/callback/**",
-        "/api/v1/config/country/", "/api/v1/suggestions/**"
-
+        "/api/v1/config/**",
+        "/api/v1/suggestions/**"
     };
 
     @Override
