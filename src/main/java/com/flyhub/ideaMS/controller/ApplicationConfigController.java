@@ -25,7 +25,7 @@ public class ApplicationConfigController {
     @Autowired
     private CountryService countryService;
 
-    //@PreAuthorize("hasRole('" + SystemModuleNames.APP_CONFIG_CONTROLLER + "') && principal.moduleAuthorities['" + SystemModuleNames.APP_CONFIG_CONTROLLER + "'].readAllowed")
+    @PreAuthorize("hasRole('" + SystemModuleNames.APP_CONFIG_CONTROLLER + "') && principal.moduleAuthorities['" + SystemModuleNames.APP_CONFIG_CONTROLLER + "'].readAllowed")
     @GetMapping("/country")
     public ResponseEntity<?> listCountries() {
         List<Country> country_list = countryService.listCountries();
@@ -34,10 +34,20 @@ public class ApplicationConfigController {
     }
 
     @PreAuthorize("hasRole('" + SystemModuleNames.APP_CONFIG_CONTROLLER + "') && principal.moduleAuthorities['" + SystemModuleNames.APP_CONFIG_CONTROLLER + "'].searchAllowed")
-    @GetMapping("country/{code}")
+    @GetMapping("country-code/{code}")
     public ResponseEntity<?> listCountryByCountryCode(@PathVariable("code") String code) {
         try {
             return new ResponseEntity<>(new DataObjectResponse(0, "Success!", countryService.listCountryByCountryCode(code)), HttpStatus.OK);
+        } catch (RecordNotFoundException ex) {
+            return new ResponseEntity<>(new OperationResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    //@PreAuthorize("hasRole('" + SystemModuleNames.APP_CONFIG_CONTROLLER + "') && principal.moduleAuthorities['" + SystemModuleNames.APP_CONFIG_CONTROLLER + "'].searchAllowed")
+    @GetMapping("country-name/{name}")
+    public ResponseEntity<?> listCountryByName(@PathVariable("name") String name) {
+        try {
+            return new ResponseEntity<>(new DataObjectResponse(0, "Success!", countryService.listCountryByName(name)), HttpStatus.OK);
         } catch (RecordNotFoundException ex) {
             return new ResponseEntity<>(new OperationResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
         }

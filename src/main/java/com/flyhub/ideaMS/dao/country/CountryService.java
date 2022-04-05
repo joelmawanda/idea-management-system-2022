@@ -36,7 +36,7 @@ public class CountryService {
 
         log.info(String.format("list country by name... (%s)", name));
 
-        Country country = countryRepository.findByName(name).orElse(null);
+        Country country = countryRepository.findByName(name.toUpperCase()).orElse(null);
 
         if (country == null) {
             throw new RecordNotFoundException(2, String.format("Country with Name: %s not Found.", name));
@@ -51,7 +51,7 @@ public class CountryService {
 
         log.info("querying for country Code details for Code: " + code);
 
-        Country country = countryRepository.findByCountryCode(code)
+        Country country = countryRepository.findByCountryCode(code.toUpperCase())
                 .orElse(null);
 
         if (countryRepository == null) {
