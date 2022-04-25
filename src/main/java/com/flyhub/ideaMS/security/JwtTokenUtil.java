@@ -37,7 +37,7 @@ public class JwtTokenUtil {
                 .setIssuer(JWT_ISSUER)
                 .setSubject(merchantDetails.getUsername())
                 .claim("id", merchantDetails.getId())
-                .claim("modules", merchantDetails.getModuleAuthorities())
+                //.claim("modules", merchantDetails.getModuleAuthorities())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000)) // 1 week
                 .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
@@ -51,7 +51,7 @@ public class JwtTokenUtil {
                 .setSubject(systemUserDetails.getUsername())
                 .claim("id", systemUserDetails.getId())
                 .claim("issuperadmin", systemUserDetails.isSuperAdmin())
-                .claim("modules", systemUserDetails.getModuleAuthorities())
+                //.claim("modules", systemUserDetails.getModuleAuthorities())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000)) // 1 week
                 .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
