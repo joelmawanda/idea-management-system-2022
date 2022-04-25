@@ -92,13 +92,13 @@ public class IdeaService {
 
         log.info("Uploading  an idea...");
 
-        Ideas ideasAttachment = null;
-        Ideas savedVisual = null;
+        //Ideas ideasAttachment = null;
+        Ideas newIdea = null;
 
         int i = 0;
         while (i < files.length) {
 
-            ideasAttachment = new Ideas();
+            Ideas ideasAttachment = new Ideas();
 
             //getting the filename
             String fileName = System.currentTimeMillis() + "-" +  "-idea-attachment";
@@ -108,20 +108,15 @@ public class IdeaService {
 
             //copy file to the directory
             files[i].transferTo(path);
-            ideasAttachment.setFilename(fileName);
+              ideasAttachment.setFilename(fileName);
             ideasAttachment.setIdeaDescription(ideaDescription);
-//            ideasAttachment.setCreatedBy(createdBy);
-//            ideasAttachment.setModifiedBy(createdBy);
             ideasAttachment.setIdeaTitle(ideaTitle);
             ideasAttachment.setIdeaBackground(ideaBackground);
-//            ideasAttachment.setCreateDate(LocalDateTime.now(ZoneId.of("GMT+03:00")));
-//            ideasAttachment.setUpdatedOn(LocalDateTime.now(ZoneId.of("GMT+03:00")));
-            //ideasAttachment.setIdeaId(ideaId);
-            savedVisual = ideaRepository.save(ideasAttachment);
+            newIdea = ideaRepository.save(ideasAttachment);
             i++;
         }
 
-        return savedVisual;
+        return newIdea;
     }
 
 

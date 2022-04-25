@@ -96,7 +96,7 @@ public class IdeaController {
         Ideas submitted_idea = ideaService.attachFile(files, ideaDescription,ideaBackground,ideaTitle);
 
         if (submitted_idea != null) {
-            return new ResponseEntity<>(submitted_idea, HttpStatus.CREATED);
+            return new ResponseEntity<>(new DataObjectResponse(0,"Success",submitted_idea), HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>(submitted_idea, HttpStatus.EXPECTATION_FAILED);
         }
