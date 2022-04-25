@@ -79,7 +79,7 @@ public class SuggestionController {
         Suggestion submitted_suggestion = suggestionService.createSuggestion(suggestion);
 
         if (submitted_suggestion != null) {
-            return new ResponseEntity<>(submitted_suggestion, HttpStatus.CREATED);
+            return new ResponseEntity<>(new DataObjectResponse(0,"Success", submitted_suggestion) , HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>(submitted_suggestion, HttpStatus.EXPECTATION_FAILED);
         }
