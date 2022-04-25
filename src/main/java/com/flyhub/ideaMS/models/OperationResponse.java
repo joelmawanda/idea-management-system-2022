@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @ToString
 @Data
 @EqualsAndHashCode(callSuper = false)
-@JsonPropertyOrder({"timestamp", "operation_result", "operation_description", "data"})
+@JsonPropertyOrder(value = {"timestamp", "operationResult", "operationDescription", "data"})
 public class OperationResponse {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = GlobalConfig.APP_TIME_PATTERN)

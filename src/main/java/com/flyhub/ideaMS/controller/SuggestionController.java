@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/suggestions")
 
+
 public class SuggestionController {
 
     private static final org.apache.log4j.Logger log = Logger.getLogger(SuggestionController.class.getName());
