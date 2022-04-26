@@ -19,13 +19,12 @@ import java.util.List;
 
 /**
  *
- * @author Jean Kekirungi
  * @author Joel Mawanda
  *
  */
 @RestController
 @CrossOrigin(origins = {"${app.api.settings.cross-origin.urls}"})
-@RequestMapping("/api/v1/merchants")
+@RequestMapping("/api/v1/normal-users")
 @Validated
 public class MerchantsController {
 
@@ -50,7 +49,7 @@ public class MerchantsController {
      */
     @PreAuthorize("#merchantId == principal.id OR hasRole('" + SystemModuleNames.APP_SECURITY_CONTROLLER + "')")
     @GetMapping("/{merchantid}")
-    public ResponseEntity<?> listMerchantByMerchantId(@PathVariable("merchantid") @NotNull(message = "Merchant Id cannot be null") String merchantId) {
+    public ResponseEntity<?> listMerchantByMerchantId(@PathVariable("merchantid") @NotNull(message = "User Id cannot be null") String merchantId) {
         try {
             Merchant merchant = merchantService.listMerchantByMerchantId(merchantId);
             return new ResponseEntity<>(new DataObjectResponse(0, "Success", merchant), HttpStatus.OK);
@@ -86,12 +85,12 @@ public class MerchantsController {
      */
     @PreAuthorize("(principal.moduleAuthorities['" + SystemModuleNames.MERCHANT_CONTROLLER + "'].updateAllowed AND #merchantId == principal.id) OR hasRole('" + SystemModuleNames.APP_SECURITY_CONTROLLER + "')")
     @PatchMapping("/update")
-    public ResponseEntity<?> updateMerchant(@RequestParam("merchantid") @NotNull(message = "MerchantId cannot be null") String merchantId, @RequestBody Merchant merchant) {
+    public ResponseEntity<?> updateMerchant(@RequestParam("merchantid") @NotNull(message = "User Id cannot be null") String merchantId, @RequestBody Merchant merchant) {
         try {
 
             Merchant user = merchantService.updateMerchant(merchantId, merchant);
 
-            return new ResponseEntity<>(new DataObjectResponse(0, "Updared Successfully", user), HttpStatus.OK);
+            return new ResponseEntity<>(new DataObjectResponse(0, "Updated Successfully", user), HttpStatus.OK);
 
         } catch (RecordNotFoundException ex) {
             return new ResponseEntity<>(new OperationResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
@@ -113,9 +112,9 @@ public class MerchantsController {
 
         if (number_of_deleted_rows <= 0) {
 
-            return new ResponseEntity<>(new DataObjectResponse(1, "MerchantID " + merchantId + " does not exist."), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new DataObjectResponse(1, "User Id " + merchantId + " does not exist."), HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(new DataObjectResponse(0, "Successfully deleted Api User with MerchantID " + merchantId), HttpStatus.OK);
+            return new ResponseEntity<>(new DataObjectResponse(0, "Successfully deleted User with User id " + merchantId), HttpStatus.OK);
         }
     }
 }

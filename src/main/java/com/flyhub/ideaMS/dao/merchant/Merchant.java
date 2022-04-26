@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 
 /**
  *
- * @author Jean Kekirungi
  * @author Joel Mawanda
  *
  */

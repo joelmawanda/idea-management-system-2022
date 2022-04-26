@@ -39,7 +39,7 @@ public abstract class DaoConstants {
     /**
      * this is the prefix of the merchant Id
      */
-    public static final String MERCHANT_ID_SEQUENCE_PREFIX = "MERCH_";
+    public static final String MERCHANT_ID_SEQUENCE_PREFIX = "NORMAL_USER_ID_";
 
     /**
      * this is the prefix of the merchant Id

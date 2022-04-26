@@ -109,7 +109,7 @@ public class AuthenticationController {
         }
     }
 
-    @PostMapping("/merchant/register")
+    @PostMapping("/normal-user/register")
     public ResponseEntity<?> createMerchant(@Valid @RequestBody Merchant merchant) {
         try {
             Merchant created_merchant = merchantService.createMerchant(merchant);

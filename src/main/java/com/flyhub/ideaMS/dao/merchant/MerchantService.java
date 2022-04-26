@@ -101,7 +101,7 @@ public class MerchantService {
 
         merchant.setPassword(encoder.encode(merchant.getPassword()));
 
-        log.info("create an api user...");
+        log.info("creating user...");
 
         return merchantRepository.save(merchant);
 
