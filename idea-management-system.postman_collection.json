@@ -18,7 +18,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"first_name\": \"joel\",\n    \"last_name\": \"mawanda\",\n    \"user_name\": \"MawJo\",\n    \"phone_number\": \"0775443381\",\n    \"email\": \"mj@gmail.com\",\n    \"password\": \"pass\",\n    \"confirm_password\": \"pass\",\n    \"date_of_birth\": \"04-05-1996\",\n    \"gender\": \"MALE\"\n    \n}",
+							"raw": "{\n    \"first_name\": \"joel\",\n    \"last_name\": \"mawanda\",\n    \"user_name\": \"MawJo1\",\n    \"phone_number\": \"0775443382\",\n    \"email\": \"mj@gmail.com\",\n    \"password\": \"pass\",\n    \"confirm_password\": \"pass\",\n    \"date_of_birth\": \"04-05-1996\",\n    \"gender\": \"MALE\",\n    \"country\":\"uganda\"\n    \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -26,7 +26,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/auth/merchant/register",
+							"raw": "http://localhost:8080/api/v1/auth/normal-user/register",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -36,7 +36,7 @@
 								"api",
 								"v1",
 								"auth",
-								"merchant",
+								"normal-user",
 								"register"
 							]
 						}
@@ -53,7 +53,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"entityId\": \"MawJo\",\n    \"password\": \"pass\"\n}",
+							"raw": "{\n    \"entityId\": \"admin\",\n    \"password\": \"pass\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -170,15 +170,15 @@
 			]
 		},
 		{
-			"name": "merchants",
+			"name": "normal-users",
 			"item": [
 				{
-					"name": "list-merchants",
+					"name": "list-users",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/merchants/",
+							"raw": "http://localhost:8080/api/v1/normal-users/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -187,7 +187,7 @@
 							"path": [
 								"api",
 								"v1",
-								"merchants",
+								"normal-users",
 								""
 							]
 						}
@@ -195,12 +195,12 @@
 					"response": []
 				},
 				{
-					"name": "list-merchants-by-merchant-id",
+					"name": "list-normal-user-by-user-id",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/merchants/MERCH_01000",
+							"raw": "http://localhost:8080/api/v1/normal-users/MERCH_01000",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -209,7 +209,7 @@
 							"path": [
 								"api",
 								"v1",
-								"merchants",
+								"normal-users",
 								"MERCH_01000"
 							]
 						}
@@ -217,7 +217,7 @@
 					"response": []
 				},
 				{
-					"name": "modify-api-user",
+					"name": "modify-normal-user",
 					"request": {
 						"method": "PATCH",
 						"header": [],
@@ -254,12 +254,12 @@
 					"response": []
 				},
 				{
-					"name": "delete-api-user-by-id",
+					"name": "delete-normal-user-by-id",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/merchants/delete?merchantid=MERCH_02181",
+							"raw": "http://localhost:8080/api/v1/normal-users/delete?merchantid=MERCH_02181",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -268,7 +268,7 @@
 							"path": [
 								"api",
 								"v1",
-								"merchants",
+								"normal-users",
 								"delete"
 							],
 							"query": [
@@ -296,7 +296,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/merchants/search",
+							"raw": "http://localhost:8080/api/v1/normal-users/search",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -305,7 +305,7 @@
 							"path": [
 								"api",
 								"v1",
-								"merchants",
+								"normal-users",
 								"search"
 							]
 						}
@@ -1018,12 +1018,12 @@
 					"response": []
 				},
 				{
-					"name": "list-country-by-id",
+					"name": "list-country-by-country-code",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/config/country/COUNTRY_501",
+							"raw": "http://localhost:8080/api/v1/config/country-code/UG",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1033,12 +1033,55 @@
 								"api",
 								"v1",
 								"config",
-								"country",
-								"COUNTRY_501"
+								"country-code",
+								"UG"
 							]
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "list-country-by-name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/config/country-name/Uganda",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"config",
+								"country-name",
+								"Uganda"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
@@ -1082,7 +1125,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/suggestions/update/?suggestionid=SUGG_01004",
+							"raw": "http://localhost:8080/api/v1/suggestions/update/?suggestionid=SUGG_01005",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1098,7 +1141,7 @@
 							"query": [
 								{
 									"key": "suggestionid",
-									"value": "SUGG_01004"
+									"value": "SUGG_01005"
 								}
 							]
 						}
@@ -1171,7 +1214,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/suggestions/1",
+							"raw": "http://localhost:8080/api/v1/suggestions/SUGG_01006",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1181,7 +1224,7 @@
 								"api",
 								"v1",
 								"suggestions",
-								"1"
+								"SUGG_01006"
 							]
 						}
 					},
@@ -1241,7 +1284,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"first_name\": \"Joel\",\r\n        \"last_name\": \"Dunstan\",\r\n        \"username\": \"JoelM\",\r\n        \"phone_number\": \"\",\r\n        \"created_time\": \"2022-02-25T12:05:30.994+00:00\",\r\n        \"email\": \"mawandajoel20@gamil.com\",\r\n        \"gender\": \"MALE\",\r\n        \"status\": null,\r\n        \"country\": \"Uganda\",\r\n        \"prefix\": \"\",\r\n        \"postfix\": \"\"\r\n    }",
+							"raw": "{\r\n    \"idea_title\": \"HungerYYYYYYYYYYY\",\r\n    \"idea_description\": \"No lunch\",\r\n    \"idea_background\": \"No lunch\",\r\n    \"category\": \"TECHNOLOGY\",\r\n    \"priority\":\"VERY_HIGH\"\r\n}\r\n  ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1249,7 +1292,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/ideas/update/?ideaid=4",
+							"raw": "http://localhost:8080/api/v1/ideas/update/?ideaid=IDEA_01010",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1265,7 +1308,7 @@
 							"query": [
 								{
 									"key": "ideaid",
-									"value": "4"
+									"value": "IDEA_01010"
 								}
 							]
 						}
@@ -1278,7 +1321,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/ideas/delete/?ideaid=3",
+							"raw": "http://localhost:8080/api/v1/ideas/delete/?ideaid=IDEA_01010",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1294,7 +1337,7 @@
 							"query": [
 								{
 									"key": "ideaid",
-									"value": "3"
+									"value": "IDEA_01010"
 								}
 							]
 						}
@@ -1307,8 +1350,39 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"idea_title\": \"Hunger\",\r\n    \"idea_description\": \"No lunch\",\r\n    \"idea_background\": \"No lunch\",\r\n    \"category\": \"TECHNOLOGY\",\r\n    \"priority\":\"VERY_HIGH\"\r\n    \r\n}",
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "idea_title",
+									"value": "Hunger",
+									"type": "text"
+								},
+								{
+									"key": "idea_description",
+									"value": "No lunch",
+									"type": "text"
+								},
+								{
+									"key": "idea_background",
+									"value": "No lunch",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "TECHNOLOGY",
+									"type": "text"
+								},
+								{
+									"key": "priority",
+									"value": "VERY_HIGH",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/stanbic/Downloads/system-evaluation.docx"
+								}
+							],
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1338,7 +1412,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/ideas/?suggestionid=3",
+							"raw": "http://localhost:8080/api/v1/ideas/IDEA_01010",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1348,13 +1422,7 @@
 								"api",
 								"v1",
 								"ideas",
-								""
-							],
-							"query": [
-								{
-									"key": "suggestionid",
-									"value": "3"
-								}
+								"IDEA_01010"
 							]
 						}
 					},
@@ -1475,7 +1543,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJmbHlodWIudWcuY29tIiwic3ViIjoiTWF3Sm8iLCJpZCI6Ik1FUkNIXzAxMDAxIiwibW9kdWxlcyI6e30sImlhdCI6MTY0NjE0MzUxNCwiZXhwIjoxNjQ2NzQ4MzE0fQ.FXII0dGAsZeozpUV3JO0AQW3AytEiQUFlVwl5T_8vrz9a8pje1s7xY0wwWyMDLhqZT9ogBGXeXuAGHCWqxrZ7w",
+				"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJmbHlodWIudWcuY29tIiwic3ViIjoiYWRtaW4iLCJpZCI6IlNZU18wMTA1MiIsImlzc3VwZXJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjUwOTc1OTg2LCJleHAiOjE2NTE1ODA3ODZ9.5pEICWOx5ILBNMnbP7AGN-wdQzXr2yGma0SQARTFs49CiyigDL5acHv3h843drrwC0J1gp6IZYCobuLnlIZFCQ",
 				"type": "string"
 			}
 		]
