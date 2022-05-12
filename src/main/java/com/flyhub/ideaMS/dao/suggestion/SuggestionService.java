@@ -38,19 +38,9 @@ public class SuggestionService {
         return all_suggestions;
     }
 
-//    public Page<Suggestion> findSuggestionsWithPagination(int offset, int pageSize) throws RecordNotFoundException{
-//        log.info("querying for suggestions...");
-//        Page<Suggestion> allsuggestions = suggestionRepository.findAll(PageRequest.of(offset, pageSize));
-//        log.info("system found " + allsuggestions.getSize() + " suggestion(s)");
-//        if (allsuggestions == null) {
-//            throw new RecordNotFoundException(1, String.format("No suggestions present"));
-//        }
-//        return  allsuggestions;
-//    }
-
     public Page<Suggestion> findProductsWithPaginationAndSorting(int offset, int pageSize, String field) throws RecordNotFoundException{
         log.info("querying for suggestions...");
-        Page<Suggestion> allsuggestions = suggestionRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(field)));
+        Page<Suggestion> allsuggestions = suggestionRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(Sort.Direction.DESC, field)));
         log.info("system found " + allsuggestions.getSize() + " suggestion(s)");
         if (allsuggestions == null) {
             throw new RecordNotFoundException(1, String.format("No suggestions present"));
