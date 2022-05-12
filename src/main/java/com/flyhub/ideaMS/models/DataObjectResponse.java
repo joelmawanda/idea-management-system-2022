@@ -32,8 +32,8 @@ public class DataObjectResponse extends OperationResponse {
         this.data = data;
     }
 
-    public DataObjectResponse(int numberOfRecordsFound, int operationResult, String operationDescription, Object data) {
-        super(numberOfRecordsFound, operationResult, operationDescription);
+    public DataObjectResponse(int totalElements, int operationResult, String operationDescription, Object data) {
+        super(totalElements, operationResult, operationDescription);
         this.data = data;
     }
 

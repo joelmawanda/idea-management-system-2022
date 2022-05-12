@@ -32,7 +32,7 @@ public class SuggestionController {
     public ResponseEntity<?> listSuggestions() {
         try {
             List<Suggestion> all_suggestions = suggestionService.ListAllSuggestions();
-            return new ResponseEntity<>(new DataObjectResponse(0, "Success", all_suggestions), HttpStatus.OK);
+            return new ResponseEntity<>(new DataObjectResponse(all_suggestions.size(),0, "Success", all_suggestions), HttpStatus.OK);
         } catch (RecordNotFoundException ex) {
             return new ResponseEntity<>(new DataObjectResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
         }
@@ -42,7 +42,7 @@ public class SuggestionController {
     public ResponseEntity<?> getProductsWithPagination(@PathVariable int offset, @PathVariable int pageSize, @PathVariable String field) {
         try {
             Page<Suggestion> all_suggestions = suggestionService.findProductsWithPaginationAndSorting(offset, pageSize, field);
-            return new ResponseEntity<>(new DataObjectResponse(all_suggestions.getSize(), 0, "Success", all_suggestions), HttpStatus.OK);
+            return new ResponseEntity<>(new DataObjectResponse(Math.toIntExact(all_suggestions.getTotalElements()), 0, "Success", all_suggestions), HttpStatus.OK);
         } catch (RecordNotFoundException ex) {
             return new ResponseEntity<>(new DataObjectResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
         }

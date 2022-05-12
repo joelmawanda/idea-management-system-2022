@@ -21,13 +21,13 @@ import java.time.LocalDateTime;
 @ToString
 @Data
 @EqualsAndHashCode(callSuper = false)
-@JsonPropertyOrder(value = {"timestamp", "numberOfRecordsFound", "operationResult", "operationDescription", "data"})
+@JsonPropertyOrder(value = {"timestamp", "totalElements", "operationResult", "operationDescription", "data"})
 public class OperationResponse {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = GlobalConfig.APP_TIME_PATTERN)
     private LocalDateTime timestamp = LocalDateTime.now();
 
-    private int numberOfRecordsFound;
+    private int totalElements;
 
     private int operationResult;
 
@@ -40,8 +40,8 @@ public class OperationResponse {
         this.operationDescription = operationDescription;
     }
 
-    public OperationResponse(int numberOfRecordsFound, int operationResult, String operationDescription) {
-        this.numberOfRecordsFound = numberOfRecordsFound;
+    public OperationResponse(int totalElements, int operationResult, String operationDescription) {
+        this.totalElements = totalElements;
         this.operationResult = operationResult;
         this.operationDescription = operationDescription;
     }
