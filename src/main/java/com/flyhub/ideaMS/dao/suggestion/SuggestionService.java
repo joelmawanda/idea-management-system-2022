@@ -5,6 +5,9 @@ import com.flyhub.ideaMS.exception.RecordNotFoundException;
 import com.flyhub.ideaMS.utils.ServicesUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,6 +36,26 @@ public class SuggestionService {
         }
 
         return all_suggestions;
+    }
+
+//    public Page<Suggestion> findSuggestionsWithPagination(int offset, int pageSize) throws RecordNotFoundException{
+//        log.info("querying for suggestions...");
+//        Page<Suggestion> allsuggestions = suggestionRepository.findAll(PageRequest.of(offset, pageSize));
+//        log.info("system found " + allsuggestions.getSize() + " suggestion(s)");
+//        if (allsuggestions == null) {
+//            throw new RecordNotFoundException(1, String.format("No suggestions present"));
+//        }
+//        return  allsuggestions;
+//    }
+
+    public Page<Suggestion> findProductsWithPaginationAndSorting(int offset, int pageSize, String field) throws RecordNotFoundException{
+        log.info("querying for suggestions...");
+        Page<Suggestion> allsuggestions = suggestionRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(field)));
+        log.info("system found " + allsuggestions.getSize() + " suggestion(s)");
+        if (allsuggestions == null) {
+            throw new RecordNotFoundException(1, String.format("No suggestions present"));
+        }
+        return  allsuggestions;
     }
 
     public Suggestion createSuggestion(Suggestion suggestion) {

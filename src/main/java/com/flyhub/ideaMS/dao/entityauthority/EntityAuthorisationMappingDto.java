@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Benjamin E Ndugga
+ * @author Mawanda Joel
  */
 @NoArgsConstructor
 @AllArgsConstructor

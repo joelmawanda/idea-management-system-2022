@@ -8,6 +8,7 @@ import com.flyhub.ideaMS.models.OperationResponse;
 import com.flyhub.ideaMS.dao.suggestion.SuggestionService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/suggestions")
+@CrossOrigin(origins = {"${app.api.settings.cross-origin.urls}"})
 
 
 public class SuggestionController {
@@ -31,6 +33,26 @@ public class SuggestionController {
         try {
             List<Suggestion> all_suggestions = suggestionService.ListAllSuggestions();
             return new ResponseEntity<>(new DataObjectResponse(0, "Success", all_suggestions), HttpStatus.OK);
+        } catch (RecordNotFoundException ex) {
+            return new ResponseEntity<>(new DataObjectResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
+        }
+    }
+
+//    @GetMapping("/pagination/{offset}/{pageSize}")
+//    public ResponseEntity<?> getProductsWithPagination(@PathVariable int offset, @PathVariable int pageSize) {
+//        try {
+//            Page<Suggestion> all_suggestions = suggestionService.findSuggestionsWithPagination(offset, pageSize);
+//            return new ResponseEntity<>(new DataObjectResponse(all_suggestions.getSize(), 0, "Success", all_suggestions), HttpStatus.OK);
+//        } catch (RecordNotFoundException ex) {
+//            return new ResponseEntity<>(new DataObjectResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
+//        }
+//    }
+
+    @GetMapping("/paginationAndSort/{offset}/{pageSize}/{field}")
+    public ResponseEntity<?> getProductsWithPagination(@PathVariable int offset, @PathVariable int pageSize, @PathVariable String field) {
+        try {
+            Page<Suggestion> all_suggestions = suggestionService.findProductsWithPaginationAndSorting(offset, pageSize, field);
+            return new ResponseEntity<>(new DataObjectResponse(all_suggestions.getSize(), 0, "Success", all_suggestions), HttpStatus.OK);
         } catch (RecordNotFoundException ex) {
             return new ResponseEntity<>(new DataObjectResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
         }

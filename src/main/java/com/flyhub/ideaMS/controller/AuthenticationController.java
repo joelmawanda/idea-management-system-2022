@@ -101,11 +101,11 @@ public class AuthenticationController {
 
             return ResponseEntity.ok()
                     .header(HttpHeaders.AUTHORIZATION, jwtToken)
-                    .body(new DataObjectResponse(1, "Authenticated Successfully", jwtToken));
+                    .body(new DataObjectResponse(0, "Authenticated Successfully", jwtToken));
 
         } catch (AuthenticationException ex) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(new DataObjectResponse(401, "Authentication failed", ex.getLocalizedMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new DataObjectResponse(1, "Authentication failed", ex.getLocalizedMessage()));
         }
     }
 

@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  *
- * @author Benjamin E Ndugga
+ * @author Mawanda Joel
  */
 @Order(2)
 @Component
@@ -42,14 +42,14 @@ public class DefaultUserConfiguration implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        log.debug("checking if there is a sys user");
+        log.debug("checking if there is a system user");
 
         if (systemUserRepository.count() >= 1) {
             log.debug("found system users. stop commandline runner...");
             return;
         }
 
-        log.info("loading default sys user configuration...");
+        log.info("loading default system user configuration...");
 
         SystemUser systemUser = systemUserRepository.save(new SystemUser("Admin", "Administrator", "Mr", "II", "UGANDA", Gender.MALE, "admin", encoder.encode("pass"), encoder.encode("pass"), "admin@flyhub.com", "0703775706", "04-08-1996", true));
 
