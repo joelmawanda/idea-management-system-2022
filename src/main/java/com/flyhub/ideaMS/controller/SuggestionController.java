@@ -28,18 +28,18 @@ public class SuggestionController {
     @Autowired
     private SuggestionService suggestionService;
 
-    @GetMapping(path = {"/", ""})
-    public ResponseEntity<?> listSuggestions() {
-        try {
-            List<Suggestion> all_suggestions = suggestionService.ListAllSuggestions();
-            return new ResponseEntity<>(new DataObjectResponse(all_suggestions.size(),0, "Success", all_suggestions), HttpStatus.OK);
-        } catch (RecordNotFoundException ex) {
-            return new ResponseEntity<>(new DataObjectResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
-        }
-    }
+//    @GetMapping(path = {"/", ""})
+//    public ResponseEntity<?> listSuggestions() {
+//        try {
+//            List<Suggestion> all_suggestions = suggestionService.ListAllSuggestions();
+//            return new ResponseEntity<>(new DataObjectResponse(all_suggestions.size(),0, "Success", all_suggestions), HttpStatus.OK);
+//        } catch (RecordNotFoundException ex) {
+//            return new ResponseEntity<>(new DataObjectResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
+//        }
+//    }
 
-    @GetMapping("/{page}/{pageSize}/{field}")
-    public ResponseEntity<?> getSuggestionsWithPaginationAndSorting(@PathVariable int page, @PathVariable int pageSize, @PathVariable String field) {
+    @GetMapping(path = {"/", ""})
+    public ResponseEntity<?> getSuggestionsWithPaginationAndSorting(@RequestParam(name="page", defaultValue = "0") int page, @RequestParam(name="pageSize", defaultValue = "10") int pageSize, @RequestParam(name="field", defaultValue = "suggestionId") String field) {
         try {
             Page<Suggestion> all_suggestions = suggestionService.findProductsWithPaginationAndSorting(page, pageSize, field);
             return new ResponseEntity<>(new DataObjectResponse(Math.toIntExact(all_suggestions.getTotalElements()), all_suggestions.getSize(),0, "Success", all_suggestions), HttpStatus.OK);
