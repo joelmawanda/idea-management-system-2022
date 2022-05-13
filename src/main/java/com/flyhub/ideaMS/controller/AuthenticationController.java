@@ -13,6 +13,7 @@ import com.flyhub.ideaMS.models.AuthRequest;
 import com.flyhub.ideaMS.models.DataObjectResponse;
 import com.flyhub.ideaMS.models.OperationResponse;
 import com.flyhub.ideaMS.security.JwtTokenUtil;
+import com.hazelcast.security.SecurityContext;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +23,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -69,6 +71,27 @@ public class AuthenticationController {
 
             return "Principal Object: " + authenticate + " : isAuthenticated " + authenticate.isAuthenticated();
 
+        } catch (Exception ex) {
+            log.error(ex.getLocalizedMessage(), ex);
+            return ex.getLocalizedMessage();
+        }
+    }
+
+    @PostMapping("/logout")
+    public String login() {
+        try {
+
+            Authentication authenticate = SecurityContextHolder.getContext().getAuthentication();
+            Object principal = authenticate.getPrincipal();
+
+            if (principal.getClass().isAssignableFrom(SystemUserDetails.class)) {
+               applicationCacheService.removeAuthenticationObject(((SystemUserDetails) principal).getId());
+
+            } else {
+                applicationCacheService.removeAuthenticationObject(((MerchantDetails) principal).getId());
+            }
+
+            return "logged out!";
         } catch (Exception ex) {
             log.error(ex.getLocalizedMessage(), ex);
             return ex.getLocalizedMessage();

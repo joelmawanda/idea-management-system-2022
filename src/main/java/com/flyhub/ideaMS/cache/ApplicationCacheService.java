@@ -45,4 +45,11 @@ public class ApplicationCacheService {
         return map.get(entityId);
     }
 
+    public Authentication removeAuthenticationObject(String userId) {
+        log.info("removing the authentication object...");
+
+        IMap<String, Authentication> map = hazelcastInstance.getMap(GlobalConfig.PRINICIPLE_OBJECT_CACHE_MAP_NAME);
+       return map.remove(userId);
+    }
+
 }
