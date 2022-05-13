@@ -30,7 +30,7 @@ import java.util.List;
 
 /**
  *
- * @author Benjamin E Ndugga
+ * @author Mawanda Joel
  */
 
 @RestController
@@ -67,7 +67,7 @@ public class AuthenticationController {
             Authentication authenticate = authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEntityId(), authRequest.getPassword()));
 
-            return "Principal Object: " + authenticate;
+            return "Principal Object: " + authenticate + " : isAuthenticated " + authenticate.isAuthenticated();
 
         } catch (Exception ex) {
             log.error(ex.getLocalizedMessage(), ex);

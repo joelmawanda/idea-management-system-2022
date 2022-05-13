@@ -12,7 +12,7 @@ import org.springframework.data.domain.Page;
 
 /**
  *
- * @author Benjamin E Ndugga
+ * @author Mawanda Joel
  */
 //@JsonView(View.MerchantView.class)
 @EqualsAndHashCode(callSuper = false)
@@ -37,4 +37,8 @@ public class DataObjectResponse extends OperationResponse {
         this.data = data;
     }
 
+    public DataObjectResponse(int totalElements, int noOfElementsOnPage, int operationResult, String operationDescription, Object data) {
+        super(totalElements, noOfElementsOnPage, operationResult, operationDescription);
+        this.data = data;
+    }
 }

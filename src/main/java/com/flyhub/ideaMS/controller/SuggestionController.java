@@ -38,11 +38,11 @@ public class SuggestionController {
         }
     }
 
-    @GetMapping("/{offset}/{pageSize}/{field}")
-    public ResponseEntity<?> getProductsWithPagination(@RequestParam int offset, @RequestParam int pageSize, @RequestParam String field) {
+    @GetMapping("/{page}/{pageSize}/{field}")
+    public ResponseEntity<?> getSuggestionsWithPaginationAndSorting(@PathVariable int page, @PathVariable int pageSize, @PathVariable String field) {
         try {
-            Page<Suggestion> all_suggestions = suggestionService.findProductsWithPaginationAndSorting(offset, pageSize, field);
-            return new ResponseEntity<>(new DataObjectResponse(Math.toIntExact(all_suggestions.getTotalElements()), 0, "Success", all_suggestions), HttpStatus.OK);
+            Page<Suggestion> all_suggestions = suggestionService.findProductsWithPaginationAndSorting(page, pageSize, field);
+            return new ResponseEntity<>(new DataObjectResponse(Math.toIntExact(all_suggestions.getTotalElements()), all_suggestions.getSize(),0, "Success", all_suggestions), HttpStatus.OK);
         } catch (RecordNotFoundException ex) {
             return new ResponseEntity<>(new DataObjectResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
         }

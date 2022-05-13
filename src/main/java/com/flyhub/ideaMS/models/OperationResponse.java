@@ -14,20 +14,22 @@ import java.time.LocalDateTime;
 
 /**
  *
- * @author Benjamin E Ndugga
+ * @author Mawanda Joel
  */
 @JsonInclude(Include.NON_NULL)
 @NoArgsConstructor
 @ToString
 @Data
 @EqualsAndHashCode(callSuper = false)
-@JsonPropertyOrder(value = {"timestamp", "totalElements", "operationResult", "operationDescription", "data"})
+@JsonPropertyOrder(value = {"timestamp", "totalElements", "noOfElementsOnPage", "operationResult", "operationDescription", "data"})
 public class OperationResponse {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = GlobalConfig.APP_TIME_PATTERN)
     private LocalDateTime timestamp = LocalDateTime.now();
 
     private int totalElements;
+
+    private int noOfElementsOnPage;
 
     private int operationResult;
 
@@ -42,6 +44,13 @@ public class OperationResponse {
 
     public OperationResponse(int totalElements, int operationResult, String operationDescription) {
         this.totalElements = totalElements;
+        this.operationResult = operationResult;
+        this.operationDescription = operationDescription;
+    }
+
+    public OperationResponse(int totalElements, int noOfElementsOnPage, int operationResult, String operationDescription) {
+        this.totalElements = totalElements;
+        this.noOfElementsOnPage = noOfElementsOnPage;
         this.operationResult = operationResult;
         this.operationDescription = operationDescription;
     }
