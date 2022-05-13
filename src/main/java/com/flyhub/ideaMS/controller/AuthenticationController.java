@@ -78,17 +78,19 @@ public class AuthenticationController {
     }
 
     @PostMapping("/logout")
-    public String login() {
+    public String logout() {
         try {
 
             Authentication authenticate = SecurityContextHolder.getContext().getAuthentication();
             Object principal = authenticate.getPrincipal();
 
+
+
             if (principal.getClass().isAssignableFrom(SystemUserDetails.class)) {
-               applicationCacheService.removeAuthenticationObject(((SystemUserDetails) principal).getId());
+               applicationCacheService.removeAuthenticationObject((((SystemUserDetails) principal).getId()));
 
             } else {
-                applicationCacheService.removeAuthenticationObject(((MerchantDetails) principal).getId());
+                applicationCacheService.removeAuthenticationObject((((MerchantDetails) principal).getId()));
             }
 
             return "logged out!";

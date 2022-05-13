@@ -36,8 +36,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] AUTH_WHITELIST = {
         //-- public endpoints --
-        "/api/v1/auth/**",
-        "/api/v1/config/**",
+        "/api/v1/auth/test",
+            "/api/v1/auth/login",
+            "/api/v1/auth/requesttoken",
+            "/api/v1/config/**",
         "/api/v1/suggestions/**"
     };
 
