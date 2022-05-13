@@ -39,7 +39,7 @@ public class SuggestionController {
     }
 
     @GetMapping("/{offset}/{pageSize}/{field}")
-    public ResponseEntity<?> getProductsWithPagination(@PathVariable int offset, @PathVariable int pageSize, @PathVariable String field) {
+    public ResponseEntity<?> getProductsWithPagination(@RequestParam int offset, @RequestParam int pageSize, @RequestParam String field) {
         try {
             Page<Suggestion> all_suggestions = suggestionService.findProductsWithPaginationAndSorting(offset, pageSize, field);
             return new ResponseEntity<>(new DataObjectResponse(Math.toIntExact(all_suggestions.getTotalElements()), 0, "Success", all_suggestions), HttpStatus.OK);
