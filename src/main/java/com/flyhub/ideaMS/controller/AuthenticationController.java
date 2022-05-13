@@ -84,8 +84,6 @@ public class AuthenticationController {
             Authentication authenticate = SecurityContextHolder.getContext().getAuthentication();
             Object principal = authenticate.getPrincipal();
 
-
-
             if (principal.getClass().isAssignableFrom(SystemUserDetails.class)) {
                applicationCacheService.removeAuthenticationObject((((SystemUserDetails) principal).getId()));
 
