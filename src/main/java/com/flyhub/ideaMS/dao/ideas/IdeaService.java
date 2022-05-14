@@ -1,5 +1,7 @@
 package com.flyhub.ideaMS.dao.ideas;
 
+import com.flyhub.ideaMS.dao.Category;
+import com.flyhub.ideaMS.dao.Priority;
 import com.flyhub.ideaMS.dao.suggestion.Suggestion;
 import com.flyhub.ideaMS.exception.RecordNotFoundException;
 import com.flyhub.ideaMS.models.OperationResponse;
@@ -88,7 +90,7 @@ public class IdeaService {
         return ideas;
     }
 
-    public Ideas attachFile(MultipartFile[] files, String ideaDescription, String ideaTitle, String ideaBackground) throws IOException {
+    public Ideas attachFile(MultipartFile[] files, String ideaDescription, String ideaTitle, String ideaBackground, Category category, Priority priority) throws IOException {
 
         log.info("Uploading  an idea...");
 
@@ -112,6 +114,8 @@ public class IdeaService {
             ideasAttachment.setIdeaDescription(ideaDescription);
             ideasAttachment.setIdeaTitle(ideaTitle);
             ideasAttachment.setIdeaBackground(ideaBackground);
+            ideasAttachment.setCategory(category);
+            ideasAttachment.setPriority(priority);
             newIdea = ideaRepository.save(ideasAttachment);
             i++;
         }

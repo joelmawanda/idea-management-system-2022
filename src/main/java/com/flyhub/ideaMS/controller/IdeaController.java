@@ -3,6 +3,8 @@ package com.flyhub.ideaMS.controller;
 import java.io.IOException;
 import java.util.List;
 
+import com.flyhub.ideaMS.dao.Category;
+import com.flyhub.ideaMS.dao.Priority;
 import com.flyhub.ideaMS.dao.ideas.IdeaService;
 import com.flyhub.ideaMS.dao.ideas.Ideas;
 import com.flyhub.ideaMS.exception.RecordNotFoundException;
@@ -80,8 +82,8 @@ public class IdeaController {
     }
 
     @PostMapping("idea-submission")
-    public ResponseEntity<?> registerIdea(@RequestParam("file") MultipartFile[] files, @RequestParam("idea_description") @NotBlank String ideaDescription, @RequestParam("idea_background") @NotBlank String ideaBackground, @RequestParam("idea_title") @NotBlank String ideaTitle) throws IOException {
-        Ideas submitted_idea = ideaService.attachFile(files, ideaDescription,ideaBackground,ideaTitle);
+    public ResponseEntity<?> registerIdea(@RequestParam("file") MultipartFile[] files, @RequestParam("idea_description") @NotBlank String ideaDescription, @RequestParam("idea_background") @NotBlank String ideaBackground, @RequestParam("idea_title") @NotBlank String ideaTitle, @RequestParam("category") @NotBlank Category category, @RequestParam("priority") @NotBlank Priority priority) throws IOException {
+        Ideas submitted_idea = ideaService.attachFile(files, ideaDescription,ideaBackground,ideaTitle, category, priority);
 
         if (submitted_idea != null) {
             return new ResponseEntity<>(new DataObjectResponse(0,"Success",submitted_idea), HttpStatus.CREATED);
@@ -89,7 +91,4 @@ public class IdeaController {
             return new ResponseEntity<>(submitted_idea, HttpStatus.EXPECTATION_FAILED);
         }
     }
-
-//
-
 }
