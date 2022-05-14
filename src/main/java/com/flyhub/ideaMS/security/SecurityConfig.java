@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         "/api/v1/auth/test",
             "/api/v1/auth/login",
             "/api/v1/auth/requesttoken",
+            "/api/v1/auth/normal-user/register",
             "/api/v1/config/**",
         "/api/v1/suggestions/**"
     };
