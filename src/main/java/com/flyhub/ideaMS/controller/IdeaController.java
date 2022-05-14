@@ -24,6 +24,7 @@ import javax.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("api/v1/ideas")
+@CrossOrigin(origins = {"${app.api.settings.cross-origin.urls}"})
 @EnableAutoConfiguration
 
 public class IdeaController {
