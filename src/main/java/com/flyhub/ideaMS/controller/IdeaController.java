@@ -84,7 +84,8 @@ public class IdeaController {
 
     @PostMapping("idea-submission")
     public ResponseEntity<?> registerIdea(@RequestParam("file") MultipartFile[] files, @RequestParam("idea_description") @NotBlank String ideaDescription, @RequestParam("idea_background") @NotBlank String ideaBackground, @RequestParam("idea_title") @NotBlank String ideaTitle, @RequestParam("category") @NotBlank Category category, @RequestParam("priority") @NotBlank Priority priority) throws IOException {
-        Ideas submitted_idea = ideaService.attachFile(files, ideaDescription,ideaBackground,ideaTitle, category, priority);
+        Ideas submitted_idea = ideaService.attachFile(files, ideaDescription,ideaTitle, ideaBackground, category, priority);
+        System.out.println(submitted_idea);
 
         if (submitted_idea != null) {
             return new ResponseEntity<>(new DataObjectResponse(0,"Success",submitted_idea), HttpStatus.CREATED);

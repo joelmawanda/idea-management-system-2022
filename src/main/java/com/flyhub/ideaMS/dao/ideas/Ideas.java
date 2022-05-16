@@ -76,7 +76,8 @@ public class Ideas {
    @JsonProperty("modified_by")
    private String modifiedBy;
 
-   @Column(name="file", nullable = false)
+//   @Column(name="file", nullable = false)
+   @Column(name="file")
    @JsonProperty("file")
    private String filename;
 
