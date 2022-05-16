@@ -7,6 +7,7 @@ import com.flyhub.ideaMS.dao.Category;
 import com.flyhub.ideaMS.dao.Priority;
 import com.flyhub.ideaMS.dao.ideas.IdeaService;
 import com.flyhub.ideaMS.dao.ideas.Ideas;
+import com.flyhub.ideaMS.dao.suggestion.Suggestion;
 import com.flyhub.ideaMS.exception.RecordNotFoundException;
 import com.flyhub.ideaMS.models.DataObjectResponse;
 import com.flyhub.ideaMS.models.OperationResponse;

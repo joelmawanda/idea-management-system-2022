@@ -103,7 +103,7 @@ public class User implements Serializable {
     @Column(name = "date_of_birth")
     //@PastOrPresent(message = "Date of Birth cannot be in the future")
     @JsonProperty("date_of_birth")
-    @Pattern(regexp = "^(?:0[1-9]|[12]\\d|3[01])([\\/.-])(?:0[1-9]|1[012])\\1(?:19|20)\\d\\d$", message = "Please input correct date of birth")
+    //@Pattern(regexp = "^(?:0[1-9]|[12]\\d|3[01])([\\/.-])(?:0[1-9]|1[012])\\1(?:19|20)\\d\\d$", message = "Please input correct date of birth")
     @NotBlank(message = "Date of birth cannot be null")
     private String dateOfBirth;
 
