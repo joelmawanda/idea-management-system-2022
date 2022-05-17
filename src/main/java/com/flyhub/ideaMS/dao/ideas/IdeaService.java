@@ -52,7 +52,7 @@ public class IdeaService {
         return all_ideas;
     }
 
-    public Ideas updateIdea(String ideaId, Ideas ideas) throws RecordNotFoundException {
+    public Ideas updateIdea(String ideaId, String modifiedBy, Ideas ideas) throws RecordNotFoundException {
 
         //check that the idea id exists
 
@@ -62,6 +62,7 @@ public class IdeaService {
             throw new RecordNotFoundException(1, String.format("IdeaID %s does not exist.", ideaId));
         }
         //update the suggestion object by copying the properties from the new object to the old object
+        old_idea.setModifiedBy(modifiedBy);
         servicesUtils.copyNonNullProperties(ideas, old_idea);
 
         return ideaRepository.save(old_idea);

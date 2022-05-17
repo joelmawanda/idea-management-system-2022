@@ -56,10 +56,10 @@ public class IdeaController {
     }
 
     @PatchMapping("/update")
-    public ResponseEntity<?> updateIdea(@RequestParam("ideaid") @NotNull(message = "ideaId cannot be null") String ideaId, @RequestBody Ideas ideas) {
+    public ResponseEntity<?> updateIdea(@RequestParam("ideaid") @NotNull(message = "ideaId cannot be null") String ideaId, @RequestParam("modified_by") @NotNull(message = "modified_by cannot be null") String modifiedBy, @RequestBody Ideas ideas) {
         try {
 
-            Ideas ideas1 = ideaService.updateIdea(ideaId, ideas);
+            Ideas ideas1 = ideaService.updateIdea(ideaId, modifiedBy, ideas);
 
             return new ResponseEntity<>(new DataObjectResponse(0, "Updated Successfully", ideas1), HttpStatus.OK);
 
