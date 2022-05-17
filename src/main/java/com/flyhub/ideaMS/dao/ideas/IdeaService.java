@@ -92,7 +92,7 @@ public class IdeaService {
         return ideas;
     }
 
-    public Ideas attachFile(MultipartFile[] files, String ideaDescription, String ideaTitle, String ideaBackground, Category category, Priority priority) throws IOException {
+    public Ideas attachFile(MultipartFile[] files, String ideaDescription, String ideaTitle, String ideaBackground, Category category, Priority priority, String createdBy) throws IOException {
 
         log.info("Uploading  an idea...");
 
@@ -118,6 +118,7 @@ public class IdeaService {
             ideasAttachment.setIdeaBackground(ideaBackground);
             ideasAttachment.setCategory(category);
             ideasAttachment.setPriority(priority);
+            ideasAttachment.setCreatedBy(createdBy);
             newIdea = ideaRepository.save(ideasAttachment);
             i++;
         }
