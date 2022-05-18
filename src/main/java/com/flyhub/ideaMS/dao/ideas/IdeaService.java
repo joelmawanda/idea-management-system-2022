@@ -122,26 +122,62 @@ public class IdeaService {
         return newIdea;
     }
 
-    public Ideas downloadFile(String file, HttpServletResponse response) throws RecordNotFoundException{
+//    public Ideas downloadFile(String file, HttpServletResponse response) throws RecordNotFoundException{
+//        log.info("Downloading an idea...");
+//
+//        Ideas idea = ideaRepository.findByFileName(file).orElse(null);
+//
+//        if (idea == null) {
+//            throw new RecordNotFoundException(1, String.format("File does not exist"));
+//        }
+//        if (file.indexOf(".doc")>-1) response.setContentType("application/msword");
+//        if (file.indexOf(".docx")>-1) response.setContentType("application/msword");
+//        if (file.indexOf(".xls")>-1) response.setContentType("application/vnd.ms-excel");
+//        if (file.indexOf(".csv")>-1) response.setContentType("application/vnd.ms-excel");
+//        if (file.indexOf(".ppt")>-1) response.setContentType("application/ppt");
+//        if (file.indexOf(".pdf")>-1) response.setContentType("application/pdf");
+//        if (file.indexOf(".zip")>-1) response.setContentType("application/zip");
+//        response.setHeader("Content-Disposition", "attachment; filename=" +file);
+//        response.setHeader("Content-Transfer-Encoding", "binary");
+//        try {
+//            BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
+//            FileInputStream fis = new FileInputStream(uploadDir+file);
+//            int len;
+//            byte[] buf = new byte[1024];
+//            while((len = fis.read(buf)) > 0) {
+//                bos.write(buf,0,len);
+//            }
+//            bos.close();
+//            response.flushBuffer();
+//        }
+//        catch(IOException e) {
+//            e.printStackTrace();
+//
+//        }
+//        return idea;
+//    }
+
+    public Ideas downloadFile(String ideaId, HttpServletResponse response) throws RecordNotFoundException{
         log.info("Downloading an idea...");
 
-        Ideas idea = ideaRepository.findByFileName(file).orElse(null);
+        //Ideas idea = ideaRepository.findByFileName(file).orElse(null);
+        Ideas idea = ideaRepository.findByIdeaId(ideaId).orElse(null);
 
         if (idea == null) {
             throw new RecordNotFoundException(1, String.format("File does not exist"));
         }
-        if (file.indexOf(".doc")>-1) response.setContentType("application/msword");
-        if (file.indexOf(".docx")>-1) response.setContentType("application/msword");
-        if (file.indexOf(".xls")>-1) response.setContentType("application/vnd.ms-excel");
-        if (file.indexOf(".csv")>-1) response.setContentType("application/vnd.ms-excel");
-        if (file.indexOf(".ppt")>-1) response.setContentType("application/ppt");
-        if (file.indexOf(".pdf")>-1) response.setContentType("application/pdf");
-        if (file.indexOf(".zip")>-1) response.setContentType("application/zip");
-        response.setHeader("Content-Disposition", "attachment; filename=" +file);
+        if (idea.getFilename().indexOf(".doc")>-1) response.setContentType("application/msword");
+        if (idea.getFilename().indexOf(".docx")>-1) response.setContentType("application/msword");
+        if (idea.getFilename().indexOf(".xls")>-1) response.setContentType("application/vnd.ms-excel");
+        if (idea.getFilename().indexOf(".csv")>-1) response.setContentType("application/vnd.ms-excel");
+        if (idea.getFilename().indexOf(".ppt")>-1) response.setContentType("application/ppt");
+        if (idea.getFilename().indexOf(".pdf")>-1) response.setContentType("application/pdf");
+        if (idea.getFilename().indexOf(".zip")>-1) response.setContentType("application/zip");
+        response.setHeader("Content-Disposition", "attachment; filename=" +idea.getFilename());
         response.setHeader("Content-Transfer-Encoding", "binary");
         try {
             BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
-            FileInputStream fis = new FileInputStream(uploadDir+file);
+            FileInputStream fis = new FileInputStream(uploadDir+idea.getFilename());
             int len;
             byte[] buf = new byte[1024];
             while((len = fis.read(buf)) > 0) {
