@@ -15,6 +15,7 @@ public interface IdeaRepository extends JpaRepository<Ideas, Long> {
     @Query("SELECT i FROM ideas i WHERE i.ideaTitle=:idea")
     public Optional<Ideas> findByIdeaTitle(@Param("idea") String ideaTitle);
 
+
     @Modifying
     @Transactional
     @Query("DELETE from ideas i where i.ideaId=:ideaId")
@@ -22,5 +23,8 @@ public interface IdeaRepository extends JpaRepository<Ideas, Long> {
 
     @Query("SELECT i FROM ideas i WHERE i.ideaId=:ideaId")
     public Optional<Ideas> findByIdeaId(@Param("ideaId") String ideaId);
+
+    @Query("SELECT f FROM ideas f WHERE f.filename=:file")
+    public Optional<Ideas> findByFileName(@Param("file") String file);
 
 }

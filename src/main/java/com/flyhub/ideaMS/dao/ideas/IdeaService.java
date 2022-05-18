@@ -1,27 +1,22 @@
 package com.flyhub.ideaMS.dao.ideas;
 
-import com.flyhub.ideaMS.User;
 import com.flyhub.ideaMS.dao.Category;
 import com.flyhub.ideaMS.dao.Priority;
-import com.flyhub.ideaMS.dao.merchant.Merchant;
-import com.flyhub.ideaMS.dao.suggestion.Suggestion;
 import com.flyhub.ideaMS.exception.RecordNotFoundException;
 import com.flyhub.ideaMS.models.OperationResponse;
 import com.flyhub.ideaMS.utils.ServicesUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class IdeaService {
@@ -127,38 +122,42 @@ public class IdeaService {
         return newIdea;
     }
 
+    public Ideas downloadFile(String file, HttpServletResponse response) throws RecordNotFoundException{
+        log.info("Downloading an idea...");
 
+        Ideas idea = ideaRepository.findByFileName(file).orElse(null);
 
+        if (idea == null) {
+            throw new RecordNotFoundException(1, String.format("File does not exist"));
+        }
+        if (file.indexOf(".doc")>-1) response.setContentType("application/msword");
+        if (file.indexOf(".docx")>-1) response.setContentType("application/msword");
+        if (file.indexOf(".xls")>-1) response.setContentType("application/vnd.ms-excel");
+        if (file.indexOf(".csv")>-1) response.setContentType("application/vnd.ms-excel");
+        if (file.indexOf(".ppt")>-1) response.setContentType("application/ppt");
+        if (file.indexOf(".pdf")>-1) response.setContentType("application/pdf");
+        if (file.indexOf(".zip")>-1) response.setContentType("application/zip");
+        response.setHeader("Content-Disposition", "attachment; filename=" +file);
+        response.setHeader("Content-Transfer-Encoding", "binary");
+        try {
+            BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
+            FileInputStream fis = new FileInputStream(uploadDir+file);
+            int len;
+            byte[] buf = new byte[1024];
+            while((len = fis.read(buf)) > 0) {
+                bos.write(buf,0,len);
+            }
+            bos.close();
+            response.flushBuffer();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
 
-//    public OperationResult attachFile(MultipartFile[] files, String description, String createdBy, String ideaId) throws IOException {
-//        log.info("Inside attachFile method of Idea Service");
-//        Ideas ideasAttachment = null;
-//        Ideas savedVisual = null;
-//
-//        int i = 0;
-//        while (i < files.length) {
-//            ideasAttachment = new Ideas();
-//            //getting the filename
-//            String fileName = System.currentTimeMillis() + "-" + ideaId + "-idea-attachment";
-//            //getting directory path uploads/filename
-//            Path path = Paths.get(uploadDir + fileName);
-//            //copy file to the directory
-//            files[i].transferTo(path);
-//            ideasAttachment.setFilename(fileName);
-//            ideasAttachment.setIdeaDescription(description);
-//            ideasAttachment.setCreatedBy(createdBy);
-//            //ideasAttachment.setModifiedBy(createdBy);
-//            //ideasAttachment.setCreateDate(DateTime.now(ZoneId.of("GMT+03:00")));
-//            //ideasAttachment.setUpdatedOn(LocalDateTime.now(ZoneId.of("GMT+03:00")));
-//            ideasAttachment.setIdeaId(ideaId);
-//            savedVisual = ideaRepository.save(ideasAttachment);
-//            i++;
-//        }
-//        if (Objects.nonNull(savedVisual)) {
-//            result = new OperationResult(OperationResult.SUCCESS_STATUS, OperationResult.CREATION_SUCCESS_MESSAGE, null);
-//        } else {
-//            result = new OperationResult(OperationResult.FAILURE_STATUS, OperationResult.OPERATION_FAILURE_MESSAGE, null);
-//        }
-//        return result;
-//    }
+        }
+        return idea;
+    }
+
 }
+
+
+
