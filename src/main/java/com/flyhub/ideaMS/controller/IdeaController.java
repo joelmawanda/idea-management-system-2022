@@ -56,12 +56,12 @@ public class IdeaController {
 
     @GetMapping("/{ideaid}")
     public ResponseEntity<?> listIdeaByIdeaId(@PathVariable("ideaid") @NotNull(message = "Idea Id cannot be null") String ideaId) {
-            try {
-                Ideas ideas = ideaService.listIdeaByIdeaId(ideaId);
-                return new ResponseEntity<>(new DataObjectResponse(0, "Success", ideas), HttpStatus.OK);
-            } catch (RecordNotFoundException ex) {
-                return new ResponseEntity<>(new DataObjectResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
-            }
+        try {
+            Ideas ideas = ideaService.listIdeaByIdeaId(ideaId);
+            return new ResponseEntity<>(new DataObjectResponse(0, "Success", ideas), HttpStatus.OK);
+        } catch (RecordNotFoundException ex) {
+            return new ResponseEntity<>(new DataObjectResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
+        }
     }
 
     @PatchMapping("/update")
@@ -104,26 +104,15 @@ public class IdeaController {
         }
     }
 
-//    @GetMapping("/download/{file}")
-//    @ResponseBody
-//    public ResponseEntity<?> show(@PathVariable("file") @NotNull(message = "file name cannot be null") String file, HttpServletResponse response) {
-//        try {
-//            Ideas ideas = ideaService.downloadFile(file, response);
-//            return new ResponseEntity<>(new DataObjectResponse(0, "Downloaded Successfully", ideas), HttpStatus.OK);
-//        } catch (RecordNotFoundException ex) {
-//            return new ResponseEntity<>(new DataObjectResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
-//        }
-//
-//    }
-@GetMapping("/download/{ideaId}")
-@ResponseBody
-public ResponseEntity<?> show(@PathVariable("ideaId") @NotNull(message = "Idea id cannot be null") String ideaId, HttpServletResponse response) {
-    try {
-        Ideas ideas = ideaService.downloadFile(ideaId, response);
-        return new ResponseEntity<>(new DataObjectResponse(0, "Downloaded Successfully", ideas), HttpStatus.OK);
-    } catch (RecordNotFoundException ex) {
-        return new ResponseEntity<>(new DataObjectResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
-    }
+    @GetMapping("/download/")
+    @ResponseBody
+    public ResponseEntity<?> show(@RequestParam("ideaId") @NotNull(message = "Idea id cannot be null") String ideaId, @RequestParam("filename") @NotNull(message="File name cannot be null") String filename, HttpServletResponse response) {
+        try {
+            Ideas ideas = ideaService.downloadFile(ideaId, filename, response);
+            return new ResponseEntity<>(new DataObjectResponse(0, "Downloaded Successfully", ideas), HttpStatus.OK);
+        } catch (RecordNotFoundException ex) {
+            return new ResponseEntity<>(new DataObjectResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
+        }
 
-}
+    }
 }
