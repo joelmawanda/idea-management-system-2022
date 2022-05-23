@@ -2,23 +2,26 @@ package com.flyhub.ideaMS.dao.ideas;
 
 import com.flyhub.ideaMS.dao.Category;
 import com.flyhub.ideaMS.dao.Priority;
+import com.flyhub.ideaMS.dao.suggestion.Suggestion;
 import com.flyhub.ideaMS.exception.RecordNotFoundException;
 import com.flyhub.ideaMS.models.OperationResponse;
 import com.flyhub.ideaMS.utils.ServicesUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
+import java.util.Scanner;
 
 @Service
 public class IdeaService {
@@ -47,6 +50,16 @@ public class IdeaService {
         }
 
         return all_ideas;
+    }
+
+    public Page<Ideas> listIdeasWithPaginationAndSorting(int offset, int pageSize, String field) throws RecordNotFoundException{
+        log.info("querying for ideas...");
+        Page<Ideas> allideas = ideaRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(Sort.Direction.DESC, field)));
+        log.info("system found " + allideas.getSize() + " ideas(s)");
+        if (allideas == null) {
+            throw new RecordNotFoundException(1, String.format("No suggestions present"));
+        }
+        return  allideas;
     }
 
     public Ideas updateIdea(String ideaId, String modifiedBy, Ideas ideas) throws RecordNotFoundException {
@@ -163,6 +176,28 @@ public class IdeaService {
         return idea;
     }
 
+    public Ideas readFile(String ideaId) throws RecordNotFoundException {
+        log.info("Reading idea file...");
+
+        Ideas idea = ideaRepository.findByIdeaId(ideaId).orElse(null);
+
+        if (idea == null) {
+            throw new RecordNotFoundException(1, String.format("File does not exist"));
+        }
+        try {
+            File myObj = new File(uploadDir+idea.getFilename());
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                System.out.print("This is the data" + data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        return idea;
+    }
 }
 
 

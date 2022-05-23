@@ -2,6 +2,7 @@ package com.flyhub.ideaMS.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -44,11 +46,21 @@ public class IdeaController {
 
     private final String uploadDir = "C:\\Flyhub_projects\\idea-management-system-2022\\src\\main\\resources\\uploads";
 
+//    @GetMapping(path = {"/", ""})
+//    public ResponseEntity<?> listIdeas() {
+//        try {
+//            List<Ideas> all_ideas = ideaService.ListAllIdeas();
+//            return new ResponseEntity<>(new DataObjectResponse(0, "Success", all_ideas), HttpStatus.OK);
+//        } catch (RecordNotFoundException ex) {
+//            return new ResponseEntity<>(new DataObjectResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
+//        }
+//    }
+
     @GetMapping(path = {"/", ""})
-    public ResponseEntity<?> listIdeas() {
+    public ResponseEntity<?> getIdeasWithPaginationAndSorting(@RequestParam(name="page", defaultValue = "0") int page, @RequestParam(name="pageSize", defaultValue = "10") int pageSize, @RequestParam(name="field", defaultValue = "ideaId") String field) {
         try {
-            List<Ideas> all_ideas = ideaService.ListAllIdeas();
-            return new ResponseEntity<>(new DataObjectResponse(0, "Success", all_ideas), HttpStatus.OK);
+            Page<Ideas> all_ideas = ideaService.listIdeasWithPaginationAndSorting(page, pageSize, field);
+            return new ResponseEntity<>(new DataObjectResponse(Math.toIntExact(all_ideas.getTotalElements()), all_ideas.getSize(),0, "Success", all_ideas), HttpStatus.OK);
         } catch (RecordNotFoundException ex) {
             return new ResponseEntity<>(new DataObjectResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
         }
@@ -106,7 +118,7 @@ public class IdeaController {
 
     @GetMapping("/download/")
     @ResponseBody
-    public ResponseEntity<?> show(@RequestParam("ideaId") @NotNull(message = "Idea id cannot be null") String ideaId, @RequestParam("filename") @NotNull(message="File name cannot be null") String filename, HttpServletResponse response) {
+    public ResponseEntity<?> download(@RequestParam("ideaId") @NotNull(message = "Idea id cannot be null") String ideaId, @RequestParam("filename") @NotNull(message="File name cannot be null") String filename, HttpServletResponse response) {
         try {
             Ideas ideas = ideaService.downloadFile(ideaId, filename, response);
             return new ResponseEntity<>(new DataObjectResponse(0, "Downloaded Successfully", ideas), HttpStatus.OK);
@@ -115,4 +127,17 @@ public class IdeaController {
         }
 
     }
+
+    @GetMapping("/view/{ideaId}")
+    @ResponseBody
+    public ResponseEntity<?> view(@PathVariable("ideaId") @NotNull(message = "Idea id cannot be null") String ideaId) {
+        try {
+            Ideas ideas = ideaService.readFile(ideaId);
+            return new ResponseEntity<>(new DataObjectResponse(0, "Downloaded Successfully", ideas), HttpStatus.OK);
+        } catch (RecordNotFoundException ex) {
+            return new ResponseEntity<>(new DataObjectResponse(ex.getExceptionCode(), ex.getExceptionMessage()), HttpStatus.NOT_FOUND);
+        }
+
+    }
+
 }
